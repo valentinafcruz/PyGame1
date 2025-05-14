@@ -13,7 +13,7 @@ pygame.display.set_caption('Pygame')
 
 # ----- Inicia assets
 fundo_img = pygame.display.set_mode((WIDTH, HEIGHT))
-parede = pygame.image.load('assets/maze_pixel_art.png').convert_alpha()
+parede = pygame.image.load('assets\maze_pixel_art-removebg-preview.png').convert_alpha()
 parede = pygame.transform.scale(parede, (WIDTH, HEIGHT))
 
 # ----- Inicia estruturas de dados
@@ -62,11 +62,9 @@ while game:
                     player.speedx = 0
     # ----- Gera saídas
     imagem = pygame.transform.scale(fundo_img, (WIDTH, HEIGHT))
-    # ----- desenha personagem
-      # Desenha o personagem na tela
     # ----- desenha fundo
     window.fill((0, 0, 0))
-    window.blit(parede, (0, 0))  # Desenha a imagem na tela
+    window.blit(parede, (0, 0)) 
     player.move()  # Move o personagem
     player.draw()
     # ----- Atualiza estado do jogo
