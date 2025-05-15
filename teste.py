@@ -3,8 +3,9 @@ import sys
 
 # Inicialização
 pygame.init()
-WIDTH, HEIGHT = 800, 800
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+WIDTH = 800
+HEIGHT = 800
+window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Labirinto com Barreiras")
 
 # Cores
@@ -21,9 +22,9 @@ class Player:
         self.y = 100
         self.speed = 8
         self.image = pygame.image.load('assets/gato_sem_fundo.png').convert_alpha()
-        self.image = pygame.transform.scale(self.image, (30, 30))
-        self.width = 30
-        self.height = 30
+        self.image = pygame.transform.scale(self.image, (40, 40))
+        self.width = 40
+        self.height = 40
 
     def move(self, dx, dy):
         new_rect = pygame.Rect(self.x + dx, self.y + dy, self.width, self.height)
@@ -32,24 +33,24 @@ class Player:
             self.y += dy
 
     def draw(self):
-        screen.blit(self.image, (self.x, self.y))
+        window.blit(self.image, (self.x, self.y))
 
 # Instância do jogador
 player = Player()
 
 # Função para desenhar o labirinto
 def draw_maze():
-    screen.fill(BLACK)
+    window.fill(BLACK)
     wall_thickness = 10
 
     def draw_wall(x, y, w, h):
         rect = pygame.Rect(x, y, w, h)
-        pygame.draw.rect(screen, PURPLE, rect)
+        pygame.draw.rect(window, PURPLE, rect)
         barreiras.append(rect)
 
     barreiras.clear()
 
-    # Paredes
+    # Paredes - Labirinto 1
     draw_wall(50, 50, 10, 400)
     draw_wall(50, 50, 350, 10)
     draw_wall(390, 50, 10, 400)
