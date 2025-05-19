@@ -1,6 +1,7 @@
 # ===== Inicialização =====
 # ----- Importa e inicia pacotes
 import pygame
+from init_screen import init_screen
 
 pygame.init()
 
@@ -121,6 +122,9 @@ player = player()
 INIT = 0
 GAME = 1
 QUIT = 2
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+state = init_screen(screen, WIDTH, HEIGHT)
+# Inicia o jogo 
 
 while state != QUIT:
     clock.tick(FPS)
