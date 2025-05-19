@@ -113,34 +113,39 @@ def draw_maze():
     draw_wall(740, 50, 10, 220)
     draw_wall(690, 50, 50, 10)
 # ===== Loop principal =====
-game = True
+
 clock = pygame.time.Clock()
 FPS = 30
 player = player()
 
-while game:
+INIT = 0
+GAME = 1
+QUIT = 2
+
+while state != QUIT:
     clock.tick(FPS)
     # ----- Trata eventos
     for event in pygame.event.get():
         # ----- Verifica consequências
         if event.type == pygame.QUIT:
-            game = False
+            state = QUIT
         # Verifica se apertou alguma tecla.
-        if event.type == pygame.KEYDOWN:
-            # Dependendo da tecla, altera a velocidade.
-            if player.speedx == 0 and player.speedy == 0:
-                if event.key == pygame.K_LEFT:
-                    player.speedx = -10
-                    player.speedy = 0
-                if event.key == pygame.K_RIGHT:
-                    player.speedx = 10
-                    player.speedy = 0
-                if event.key == pygame.K_UP:        
-                    player.speedy =- 10
-                    player.speedx = 0
-                if event.key == pygame.K_DOWN:
-                    player.speedy = 10
-                    player.speedx = 0
+        if state == GAME:
+            if event.type == pygame.KEYDOWN:
+                # Dependendo da tecla, altera a velocidade.
+                if player.speedx == 0 and player.speedy == 0:
+                    if event.key == pygame.K_LEFT:
+                        player.speedx = -10
+                        player.speedy = 0
+                    if event.key == pygame.K_RIGHT:
+                        player.speedx = 10
+                        player.speedy = 0
+                    if event.key == pygame.K_UP:        
+                        player.speedy =- 10
+                        player.speedx = 0
+                    if event.key == pygame.K_DOWN:
+                        player.speedy = 10
+                        player.speedx = 0
     # ----- Gera saídas
     draw_maze()   # Desenha o labirinto
     player.move()  # Move o personagem
