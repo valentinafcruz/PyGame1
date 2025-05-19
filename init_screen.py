@@ -16,8 +16,8 @@ def init_screen(tela, WIDTH, HEIGHT):
     fundo = pygame.transform.scale(fundo, (WIDTH, HEIGHT))
 
     botao = pygame.image.load(path.join('assets/Botão de Play.png')).convert_alpha()
-    botao = pygame.transform.scale(botao, (300, 150))
-    botao_rect = botao.get_rect(topleft=(190, 625))
+    botao = pygame.transform.scale(botao, (320, 220))
+    botao_rect = botao.get_rect(topleft=(240,605))
 
 
     running = True
