@@ -1,6 +1,8 @@
 # ===== Inicialização =====
 # ----- Importa e inicia pacotes
 import pygame
+from init_screen import init_screen
+from gameover2 import game_over_screen      
 
 pygame.init()
 
@@ -24,7 +26,7 @@ YELLOW = (255,215,0)
 class player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.rect = pygame.Rect(50, 50, 45, 45)
+        self.rect = pygame.Rect(60, 60, 45, 45)
         self.speedx = 0
         self.speedy = 0
         self.image = pygame.image.load('assets/gato_sem_fundo.png').convert_alpha()
@@ -78,88 +80,80 @@ def draw_maze():
         barreiras.append(rect)
 
     barreiras.clear()
-    #Paredes - Labirinto 1
-    #cantos
-    draw_wall1(0,0,50,800)
-    draw_wall1(0,0,800,50)
-    draw_wall1(0,750,800,50)
-    draw_wall1(750,0,50,800)
-    #resto das paredes
-    draw_wall1(100,100,50,250)
-    draw_wall1(50, 450, 100, 150)
-    draw_wall1(100, 100, 150, 250)
-    draw_wall1(250, 300, 50, 500)
-    draw_wall1(300, 600, 200, 150)
-    draw_wall1(400, 0, 300, 200)
-    draw_wall1(400, 200, 50, 250)
-    draw_wall1(400, 400, 200, 50)
-    draw_wall1(550, 400, 50, 300)
-    draw_wall1(700, 250, 50, 550)
-    draw_wall1(350, 150, 50, 50)
-    draw_wall1(650, 700, 50, 50)
 
-    def draw_wall2(x, y, w, h):
-        rect = pygame.Rect(x, y, w, h)
-        pygame.draw.rect(window, BLACK, rect)
-        barreiras.append(rect)
-
-    #moldura
-    draw_wall2(0, 0, 40, 780)
-    draw_wall2(0, 0, 780, 40)
-    draw_wall2(0, 760, 780, 40)
-    draw_wall2(760, 0, 40, 780)
-
-    # resto das paredes
-    draw_wall2(110, 110, 30, 230)
-    draw_wall2(60, 460, 80, 130)
-    draw_wall2(110, 110, 130, 230)
-    draw_wall2(260, 310, 30, 480)
-    draw_wall2(310, 610, 180, 130)
-    draw_wall2(410, 10, 280, 180)
-    draw_wall2(410, 210, 30, 230)
-    draw_wall2(410, 410, 180, 30)
-    draw_wall2(560, 410, 30, 280)
-    draw_wall2(710, 260, 30, 530)
-    draw_wall2(360, 160, 30, 30)
-    draw_wall2(660, 710, 30, 30)
-
-
-
-
+    # Paredes - Labirinto 1
+    draw_wall(0,0,50,800)
+    draw_wall(100,200,50,600)
+    # draw_wall(50, 50, 10, 400)
+    # draw_wall(50, 50, 350, 10)
+    # draw_wall(390, 50, 10, 400)
+    # draw_wall(50, 450, 100, 10)
+    # draw_wall(110, 150, 10, 200)
+    # draw_wall(110, 140, 150, 10)
+    # draw_wall(110, 350, 160, 10)
+    # draw_wall(150, 450, 10, 140)
+    # draw_wall(50, 590, 110, 10)
+    # draw_wall(50, 590, 10, 150)
+    # draw_wall(50, 740, 220, 10)
+    # draw_wall(270, 350, 10, 400)
+    # draw_wall(260, 140, 10, 160)
+    # draw_wall(260, 300, 70, 10)
+    # draw_wall(320, 300, 10, 300)
+    # draw_wall(390, 450, 160, 10)
+    # draw_wall(550, 450, 10, 220)
+    # draw_wall(320, 600, 160, 10)
+    # draw_wall(480, 600, 10, 140)
+    # draw_wall(480, 740, 210, 10)
+    # draw_wall(550, 670, 50, 10)
+    # draw_wall(600, 410, 10, 270)
+    # draw_wall(690, 260, 10, 490)
+    # draw_wall(460, 410, 150, 10)
+    # draw_wall(460, 200, 10, 210)
+    # draw_wall(460, 200, 230, 10)
+    # draw_wall(690, 50, 10, 160)
+    # draw_wall(690, 260, 50, 10)
+    # draw_wall(740, 50, 10, 220)
+    # draw_wall(690, 50, 50, 10)
 # ===== Loop principal =====
-game = True
+
 clock = pygame.time.Clock()
 FPS = 30
 player = player()
 
-while game:
+INIT = 0
+GAME = 1
+QUIT = 2
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+state = init_screen(screen, WIDTH, HEIGHT)
+# Inicia o jogo 
+while state != QUIT:
     clock.tick(FPS)
     # ----- Trata eventos
     for event in pygame.event.get():
         # ----- Verifica consequências
         if event.type == pygame.QUIT:
-            game = False
+            state = QUIT
         # Verifica se apertou alguma tecla.
-        if event.type == pygame.KEYDOWN:
-            # Dependendo da tecla, altera a velocidade.
-            if player.speedx == 0 and player.speedy == 0:
-                if event.key == pygame.K_LEFT:
-                    player.speedx = -10
-                    player.speedy = 0
-                if event.key == pygame.K_RIGHT:
-                    player.speedx = 10
-                    player.speedy = 0
-                if event.key == pygame.K_UP:        
-                    player.speedy =- 10
-                    player.speedx = 0
-                if event.key == pygame.K_DOWN:
-                    player.speedy = 10
-                    player.speedx = 0
+        if state == GAME:
+            if event.type == pygame.KEYDOWN:
+                # Dependendo da tecla, altera a velocidade.
+                if player.speedx == 0 and player.speedy == 0:
+                    if event.key == pygame.K_LEFT:
+                        player.speedx = -10
+                        player.speedy = 0
+                    if event.key == pygame.K_RIGHT:
+                        player.speedx = 10
+                        player.speedy = 0
+                    if event.key == pygame.K_UP:        
+                        player.speedy =- 10
+                        player.speedx = 0
+                    if event.key == pygame.K_DOWN:
+                        player.speedy = 10
+                        player.speedx = 0
     # ----- Gera saídas
     player.move()  # Move o personagem
     player.draw() # Desenha o personagem
     pygame.display.update()  # Atualiza a tela
-    draw_maze()   # Desenha o labirinto
 
 # ===== Finalização =====
-pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
+pygame.quit()
