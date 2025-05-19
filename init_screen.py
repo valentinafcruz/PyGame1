@@ -6,7 +6,7 @@ from os import path
 FPS = 60
 BLACK = (0, 0, 0)
 GAME = 1
-QUIT = 0
+QUIT = 2
 
 def init_screen(tela, WIDTH, HEIGHT):
     # Variável para o ajuste de velocidade
@@ -29,7 +29,6 @@ def init_screen(tela, WIDTH, HEIGHT):
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 return QUIT
-                exit()
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 if botao_rect.collidepoint(evento.pos):
                     return GAME
