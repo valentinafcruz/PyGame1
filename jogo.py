@@ -123,6 +123,7 @@ player = player()
 INIT = 0
 GAME = 1
 QUIT = 2
+GAMEOVER = 3
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 state = init_screen(screen, WIDTH, HEIGHT)
 # Inicia o jogo 
@@ -139,16 +140,16 @@ while state != QUIT:
                 # Dependendo da tecla, altera a velocidade.
                 if player.speedx == 0 and player.speedy == 0:
                     if event.key == pygame.K_LEFT:
-                        player.speedx = -10
+                        player.speedx = -20
                         player.speedy = 0
                     if event.key == pygame.K_RIGHT:
-                        player.speedx = 10
+                        player.speedx = 20
                         player.speedy = 0
                     if event.key == pygame.K_UP:        
-                        player.speedy =- 10
+                        player.speedy =- 20
                         player.speedx = 0
                     if event.key == pygame.K_DOWN:
-                        player.speedy = 10
+                        player.speedy = 20
                         player.speedx = 0
     # ----- Gera saídas
     player.move()  # Move o personagem
