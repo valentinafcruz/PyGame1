@@ -2,6 +2,7 @@
 # ----- Importa e inicia pacotes
 import pygame
 from init_screen import init_screen
+from gameover2 import game_over_screen      
 
 pygame.init()
 
@@ -125,7 +126,6 @@ QUIT = 2
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 state = init_screen(screen, WIDTH, HEIGHT)
 # Inicia o jogo 
-
 while state != QUIT:
     clock.tick(FPS)
     # ----- Trata eventos
@@ -155,6 +155,8 @@ while state != QUIT:
     player.move()  # Move o personagem
     player.draw() # Desenha o personagem
     pygame.display.update()  # Atualiza a tela
+# ===== Tela de Game Over =====
+game_over_screen(screen, WIDTH, HEIGHT)
 
 # ===== Finalização =====
-pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
+pygame.quit()
