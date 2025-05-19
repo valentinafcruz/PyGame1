@@ -24,7 +24,7 @@ PURPLE = (190, 50, 255)
 class player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.rect = pygame.Rect(50, 50, 45, 45)
+        self.rect = pygame.Rect(60, 60, 45, 45)
         self.speedx = 0
         self.speedy = 0
         self.image = pygame.image.load('assets/gato_sem_fundo.png').convert_alpha()
@@ -80,67 +80,72 @@ def draw_maze():
     barreiras.clear()
 
     # Paredes - Labirinto 1
-    draw_wall(0,0,50,800)
-    draw_wall(100,200,50,600)
-    # draw_wall(50, 50, 10, 400)
-    # draw_wall(50, 50, 350, 10)
-    # draw_wall(390, 50, 10, 400)
-    # draw_wall(50, 450, 100, 10)
-    # draw_wall(110, 150, 10, 200)
-    # draw_wall(110, 140, 150, 10)
-    # draw_wall(110, 350, 160, 10)
-    # draw_wall(150, 450, 10, 140)
-    # draw_wall(50, 590, 110, 10)
-    # draw_wall(50, 590, 10, 150)
-    # draw_wall(50, 740, 220, 10)
-    # draw_wall(270, 350, 10, 400)
-    # draw_wall(260, 140, 10, 160)
-    # draw_wall(260, 300, 70, 10)
-    # draw_wall(320, 300, 10, 300)
-    # draw_wall(390, 450, 160, 10)
-    # draw_wall(550, 450, 10, 220)
-    # draw_wall(320, 600, 160, 10)
-    # draw_wall(480, 600, 10, 140)
-    # draw_wall(480, 740, 210, 10)
-    # draw_wall(550, 670, 50, 10)
-    # draw_wall(600, 410, 10, 270)
-    # draw_wall(690, 260, 10, 490)
-    # draw_wall(460, 410, 150, 10)
-    # draw_wall(460, 200, 10, 210)
-    # draw_wall(460, 200, 230, 10)
-    # draw_wall(690, 50, 10, 160)
-    # draw_wall(690, 260, 50, 10)
-    # draw_wall(740, 50, 10, 220)
-    # draw_wall(690, 50, 50, 10)
+    # draw_wall(0,0,50,800)
+    # draw_wall(100,200,50,600)
+    draw_wall(50, 50, 10, 400)
+    draw_wall(50, 50, 350, 10)
+    draw_wall(390, 50, 10, 400)
+    draw_wall(50, 450, 100, 10)
+    draw_wall(110, 150, 10, 200)
+    draw_wall(110, 140, 150, 10)
+    draw_wall(110, 350, 160, 10)
+    draw_wall(150, 450, 10, 140)
+    draw_wall(50, 590, 110, 10)
+    draw_wall(50, 590, 10, 150)
+    draw_wall(50, 740, 220, 10)
+    draw_wall(270, 350, 10, 400)
+    draw_wall(260, 140, 10, 160)
+    draw_wall(260, 300, 70, 10)
+    draw_wall(320, 300, 10, 300)
+    draw_wall(390, 450, 160, 10)
+    draw_wall(550, 450, 10, 220)
+    draw_wall(320, 600, 160, 10)
+    draw_wall(480, 600, 10, 140)
+    draw_wall(480, 740, 210, 10)
+    draw_wall(550, 670, 50, 10)
+    draw_wall(600, 410, 10, 270)
+    draw_wall(690, 260, 10, 490)
+    draw_wall(460, 410, 150, 10)
+    draw_wall(460, 200, 10, 210)
+    draw_wall(460, 200, 230, 10)
+    draw_wall(690, 50, 10, 160)
+    draw_wall(690, 260, 50, 10)
+    draw_wall(740, 50, 10, 220)
+    draw_wall(690, 50, 50, 10)
 # ===== Loop principal =====
-game = True
+
 clock = pygame.time.Clock()
 FPS = 30
 player = player()
 
-while game:
+INIT = 0
+GAME = 1
+QUIT = 2
+
+while state != QUIT:
     clock.tick(FPS)
     # ----- Trata eventos
     for event in pygame.event.get():
         # ----- Verifica consequências
         if event.type == pygame.QUIT:
-            game = False
+            state = QUIT
         # Verifica se apertou alguma tecla.
-        if event.type == pygame.KEYDOWN:
-            # Dependendo da tecla, altera a velocidade.
-            if player.speedx == 0 and player.speedy == 0:
-                if event.key == pygame.K_LEFT:
-                    player.speedx = -10
-                    player.speedy = 0
-                if event.key == pygame.K_RIGHT:
-                    player.speedx = 10
-                    player.speedy = 0
-                if event.key == pygame.K_UP:        
-                    player.speedy =- 10
-                    player.speedx = 0
-                if event.key == pygame.K_DOWN:
-                    player.speedy = 10
-                    player.speedx = 0
+        if state == GAME:
+            if event.type == pygame.KEYDOWN:
+                # Dependendo da tecla, altera a velocidade.
+                if player.speedx == 0 and player.speedy == 0:
+                    if event.key == pygame.K_LEFT:
+                        player.speedx = -10
+                        player.speedy = 0
+                    if event.key == pygame.K_RIGHT:
+                        player.speedx = 10
+                        player.speedy = 0
+                    if event.key == pygame.K_UP:        
+                        player.speedy =- 10
+                        player.speedx = 0
+                    if event.key == pygame.K_DOWN:
+                        player.speedy = 10
+                        player.speedx = 0
     # ----- Gera saídas
     draw_maze()   # Desenha o labirinto
     player.move()  # Move o personagem
