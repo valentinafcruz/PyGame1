@@ -15,8 +15,8 @@ pygame.display.set_caption('Pygame')
 
 # ----- Inicia assets
 fundo_img = pygame.display.set_mode((WIDTH, HEIGHT))
-parede = pygame.image.load('assets\maze_pixel_art-removebg-preview.png').convert_alpha()
-parede = pygame.transform.scale(parede, (WIDTH, HEIGHT))
+peixe_img = pygame.image.load("assets/peixe_sem_fundo.png").convert_alpha()
+peixe_img = pygame.transform.scale(peixe_img, (30, 30))
 
 # Cores
 BLACK = (0, 0, 0)
@@ -26,18 +26,18 @@ YELLOW = (255,215,0)
 class player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.rect = pygame.Rect(50, 50, 45, 45)
+        self.rect = pygame.Rect(50, 50, 50, 50)
         self.speedx = 0
         self.speedy = 0
-        self.image = pygame.image.load('assets/gato_sem_fundo.png').convert_alpha()
-        self.image = pygame.transform.scale(self.image, (47, 50))
+        self.image = pygame.image.load('assets/gato_magro_sem_fundo.png').convert_alpha()
+        self.image = pygame.transform.scale(self.image, (50, 50))
     
     def move(self):
 
-        new_rect = pygame.Rect(self.rect.x + self.speedx, self.rect.y + self.speedy, self.rect.width, self.rect.height)
-        #pygame.draw.rect(window, (255, 0, 0), new_rect)  # Desenha o retângulo temporário para depuração
+        nova_posicao = pygame.Rect(self.rect.x + self.speedx, self.rect.y + self.speedy, self.rect.width, self.rect.height)
+        #pygame.draw.rect(window, (255, 0, 0), nova_posicao)  # Desenha o retângulo temporário para depuração
 
-        if not check_collision(new_rect):
+        if not check_collision(nova_posicao):
             if self.rect.right > WIDTH:
                 self.rect.right = WIDTH
                 self.speedx = 0
@@ -61,10 +61,30 @@ class player(pygame.sprite.Sprite):
     def draw(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
+# Classe do peixe
+class Peixe:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.rect = pygame.Rect(x, y, 30, 30)
+
+    def desenhar(self, tela):
+        tela.blit(peixe_img, (self.x, self.y))
+
+    def foi_comido(self, gato_rect):
+        return self.rect.colliderect(gato_rect)
+
+# Lista de peixes
+peixes = [
+    Peixe(100, 410),        
+    Peixe(80, 410),
+    # escrever outros peixes...
+]
+
 # Função para verificar colisão com barreiras
-def check_collision(new_rect):
+def check_collision(nova_posicao):
     for wall in barreiras:
-        if new_rect.colliderect(wall):
+        if nova_posicao.colliderect(wall):
             return True
     return False
 
@@ -100,30 +120,30 @@ def draw_maze():
     draw_wall1(350, 150, 50, 50)
     draw_wall1(650, 700, 50, 50)
 
-    def draw_wall2(x, y, w, h):
-        rect = pygame.Rect(x, y, w, h)
-        pygame.draw.rect(window, BLACK, rect)
-        barreiras.append(rect)
+    # def draw_wall2(x, y, w, h):
+    #     rect = pygame.Rect(x, y, w, h)
+    #     pygame.draw.rect(window, BLACK, rect)
+    #     barreiras.append(rect)
 
-    #moldura
-    draw_wall2(0, 0, 40, 780)
-    draw_wall2(0, 0, 780, 40)
-    draw_wall2(0, 760, 780, 40)
-    draw_wall2(760, 0, 40, 780)
+    # #moldura
+    # draw_wall2(0, 0, 40, 780)
+    # draw_wall2(0, 0, 780, 40)
+    # draw_wall2(0, 760, 780, 40)
+    # draw_wall2(760, 0, 40, 780)
 
-    # resto das paredes
-    draw_wall2(110, 110, 30, 230)
-    draw_wall2(60, 460, 80, 130)
-    draw_wall2(110, 110, 130, 230)
-    draw_wall2(260, 310, 30, 480)
-    draw_wall2(310, 610, 180, 130)
-    draw_wall2(410, 10, 280, 180)
-    draw_wall2(410, 210, 30, 230)
-    draw_wall2(410, 410, 180, 30)
-    draw_wall2(560, 410, 30, 280)
-    draw_wall2(710, 260, 30, 530)
-    draw_wall2(360, 160, 30, 30)
-    draw_wall2(660, 710, 30, 30)
+    # # resto das paredes
+    # draw_wall2(110, 110, 30, 230)
+    # draw_wall2(60, 460, 80, 130)
+    # draw_wall2(110, 110, 130, 230)
+    # draw_wall2(260, 310, 30, 480)
+    # draw_wall2(310, 610, 180, 130)
+    # draw_wall2(410, 10, 280, 180)
+    # draw_wall2(410, 210, 30, 230)
+    # draw_wall2(410, 410, 180, 30)
+    # draw_wall2(560, 410, 30, 280)
+    # draw_wall2(710, 260, 30, 530)
+    # draw_wall2(360, 160, 30, 30)
+    # draw_wall2(660, 710, 30, 30)
 # ===== Loop principal =====
 
 clock = pygame.time.Clock()
@@ -161,11 +181,19 @@ while state != QUIT:
                     if event.key == pygame.K_DOWN:
                         player.speedy = 20
                         player.speedx = 0
+
+    # Atualiza lista de peixes (remove os comidos)
+    peixes = [peixe for peixe in peixes if not peixe.foi_comido(player.rect)]
+
+    for peixe in peixes:
+        peixe.desenhar(window)
+
     # ----- Gera saídas
     player.move()  # Move o personagem
     player.draw() # Desenha o personagem
     pygame.display.update()  # Atualiza a tela
-    draw_maze()
+    draw_maze() # Desenha o labirinto
+    # Verifica se o jogador colidiu com as barreiras
 
 # ===== Finalização =====
 pygame.quit()
