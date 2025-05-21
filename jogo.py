@@ -63,7 +63,7 @@ class Player(pygame.sprite.Sprite):
 # ----- Função para verificar colisão com paredes
 def check_collision(new_rect):
     for wall in barreiras:
-        if new_rect.colliderect(wall):
+        if nova_posicao.colliderect(wall):
             return True
     return False
 
@@ -101,10 +101,10 @@ def draw_maze():
     draw_wall1(350, 150, 50, 50)
     draw_wall1(650, 700, 50, 50)
 
-    def draw_wall2(x, y, w, h):
-        rect = pygame.Rect(x, y, w, h)
-        pygame.draw.rect(window, BLACK, rect)
-        barreiras.append(rect)
+    # def draw_wall2(x, y, w, h):
+    #     rect = pygame.Rect(x, y, w, h)
+    #     pygame.draw.rect(window, BLACK, rect)
+    #     barreiras.append(rect)
 
     draw_wall2(0, 0, 40, 780)
     draw_wall2(0, 0, 780, 40)
