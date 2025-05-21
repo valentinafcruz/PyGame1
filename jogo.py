@@ -2,7 +2,8 @@
 # ----- Importa e inicia pacotes
 import pygame
 from init_screen import init_screen
-from gameover2 import game_over_screen      
+from gameover2 import game_over_screen     
+from inimigo import Inimigo, TiroInimigo      
 
 pygame.init()
 
@@ -10,32 +11,30 @@ pygame.init()
 WIDTH = 800
 HEIGHT = 800
 window = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Pygame')
+pygame.display.set_caption('FatCatRush')
 
 
 # ----- Inicia assets
 fundo_img = pygame.display.set_mode((WIDTH, HEIGHT))
-parede = pygame.image.load('assets\maze_pixel_art-removebg-preview.png').convert_alpha()
+parede = pygame.image.load('assets/maze_pixel_art-removebg-preview.png').convert_alpha()
 parede = pygame.transform.scale(parede, (WIDTH, HEIGHT))
 
 # Cores
 BLACK = (0, 0, 0)
-YELLOW = (255,215,0)
+YELLOW = (255, 215, 0)
 
 # ----- Inicia estruturas de dados
-class player(pygame.sprite.Sprite):
+class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.rect = pygame.Rect(50, 50, 45, 45)
-        self.speedx = 0
-        self.speedy = 0
         self.image = pygame.image.load('assets/gato_sem_fundo.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (47, 50))
-    
-    def move(self):
+        self.rect = self.image.get_rect(topleft=(50, 50))
+        self.speedx = 0
+        self.speedy = 0
 
+    def move(self):
         new_rect = pygame.Rect(self.rect.x + self.speedx, self.rect.y + self.speedy, self.rect.width, self.rect.height)
-        #pygame.draw.rect(window, (255, 0, 0), new_rect)  # Desenha o retângulo temporário para depuração
 
         if not check_collision(new_rect):
             if self.rect.right > WIDTH:
@@ -56,21 +55,23 @@ class player(pygame.sprite.Sprite):
         else:
             self.speedx = 0
             self.speedy = 0
-        
 
     def draw(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
-# Função para verificar colisão com barreiras
+
+# ----- Função para verificar colisão com paredes
 def check_collision(new_rect):
     for wall in barreiras:
         if new_rect.colliderect(wall):
             return True
     return False
 
-# Lista para armazenar retângulos das paredes (barreiras)
+
+# ----- Lista para armazenar retângulos das paredes
 barreiras = []
-# ----- Função para desenhar o labirinto 
+
+# ----- Função para desenhar o labirinto
 def draw_maze():
     window.fill(BLACK)
 
@@ -80,14 +81,14 @@ def draw_maze():
         barreiras.append(rect)
 
     barreiras.clear()
-    #Paredes - Labirinto 1
-    #cantos
-    draw_wall1(0,0,50,800)
-    draw_wall1(0,0,800,50)
-    draw_wall1(0,750,800,50)
-    draw_wall1(750,0,50,800)
-    #resto das paredes
-    draw_wall1(100,100,50,250)
+
+    # Paredes - Labirinto
+    draw_wall1(0, 0, 50, 800)
+    draw_wall1(0, 0, 800, 50)
+    draw_wall1(0, 750, 800, 50)
+    draw_wall1(750, 0, 50, 800)
+
+    draw_wall1(100, 100, 50, 250)
     draw_wall1(50, 450, 100, 150)
     draw_wall1(100, 100, 150, 250)
     draw_wall1(250, 300, 50, 500)
@@ -105,13 +106,11 @@ def draw_maze():
         pygame.draw.rect(window, BLACK, rect)
         barreiras.append(rect)
 
-    #moldura
     draw_wall2(0, 0, 40, 780)
     draw_wall2(0, 0, 780, 40)
     draw_wall2(0, 760, 780, 40)
     draw_wall2(760, 0, 40, 780)
 
-    # resto das paredes
     draw_wall2(110, 110, 30, 230)
     draw_wall2(60, 460, 80, 130)
     draw_wall2(110, 110, 130, 230)
@@ -124,11 +123,14 @@ def draw_maze():
     draw_wall2(710, 260, 30, 530)
     draw_wall2(360, 160, 30, 30)
     draw_wall2(660, 710, 30, 30)
+
+
 # ===== Loop principal =====
 
 clock = pygame.time.Clock()
 FPS = 30
-player = player()
+
+player = Player()
 
 INIT = 0
 GAME = 1
@@ -136,36 +138,66 @@ QUIT = 2
 GAMEOVER = 3
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 state = init_screen(screen, WIDTH, HEIGHT)
-# Inicia o jogo 
+
+# ----- Grupos de sprites
+grupo_inimigos = pygame.sprite.Group()
+grupo_tiros_inimigos = pygame.sprite.Group()
+
+# ----- Cria inimigos
+inimigo1 = Inimigo(300, 90, 'baixo')
+inimigo2 = Inimigo(600, 220, 'direita')
+inimigo3 = Inimigo(235, 370, 'esquerda')
+grupo_inimigos.add(inimigo1, inimigo2, inimigo3)
+
+
+# ===== Loop =====
 while state != QUIT:
     clock.tick(FPS)
-    # ----- Trata eventos
+
     for event in pygame.event.get():
-        # ----- Verifica consequências
         if event.type == pygame.QUIT:
             state = QUIT
-        # Verifica se apertou alguma tecla.
+
         if state == GAME:
             if event.type == pygame.KEYDOWN:
-                # Dependendo da tecla, altera a velocidade.
                 if player.speedx == 0 and player.speedy == 0:
                     if event.key == pygame.K_LEFT:
-                        player.speedx = -20
+                        player.speedx = -15
                         player.speedy = 0
                     if event.key == pygame.K_RIGHT:
-                        player.speedx = 20
+                        player.speedx = 15
                         player.speedy = 0
-                    if event.key == pygame.K_UP:        
-                        player.speedy =- 20
+                    if event.key == pygame.K_UP:
+                        player.speedy = -15
                         player.speedx = 0
                     if event.key == pygame.K_DOWN:
-                        player.speedy = 20
+                        player.speedy = 15
                         player.speedx = 0
-    # ----- Gera saídas
-    player.move()  # Move o personagem
-    player.draw() # Desenha o personagem
-    pygame.display.update()  # Atualiza a tela
-    draw_maze()
+
+    if state == GAMEOVER:
+        game_over_screen(screen, WIDTH, HEIGHT)
+            
+
+    if state == GAME:
+        # ----- Atualizações
+        grupo_inimigos.update(grupo_tiros_inimigos)
+        grupo_tiros_inimigos.update(barreiras)
+
+        # Verifica colisão dos tiros com o player
+        if pygame.sprite.spritecollide(player, grupo_tiros_inimigos, True):
+            state = GAMEOVER
+        if pygame.sprite.spritecollide(player, grupo_inimigos, False):
+            state = GAMEOVER
+
+        # ----- Desenho
+        draw_maze()
+        player.move()
+        player.draw()
+
+        grupo_inimigos.draw(screen)
+        grupo_tiros_inimigos.draw(screen)
+
+        pygame.display.update()
 
 # ===== Finalização =====
 pygame.quit()

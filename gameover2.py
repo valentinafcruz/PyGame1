@@ -21,4 +21,5 @@ def game_over_screen(tela, WIDTH, HEIGHT):
 
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                return QUIT
+                pygame.quit()
+                exit() 
