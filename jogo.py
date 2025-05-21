@@ -26,7 +26,7 @@ YELLOW = (255,215,0)
 class player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.rect = pygame.Rect(50, 50, 50, 50)
+        self.rect = pygame.Rect(50, 50, 50, 50) #coordenadas iniciais do gato, tamanho do gato
         self.speedx = 0
         self.speedy = 0
         self.image = pygame.image.load('assets/gato_magro_sem_fundo.png').convert_alpha()
@@ -35,8 +35,6 @@ class player(pygame.sprite.Sprite):
     def move(self):
 
         nova_posicao = pygame.Rect(self.rect.x + self.speedx, self.rect.y + self.speedy, self.rect.width, self.rect.height)
-        #pygame.draw.rect(window, (255, 0, 0), nova_posicao)  # Desenha o retângulo temporário para depuração
-
         if not check_collision(nova_posicao):
             if self.rect.right > WIDTH:
                 self.rect.right = WIDTH
@@ -61,6 +59,13 @@ class player(pygame.sprite.Sprite):
     def draw(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
+# Função para verificar colisão com barreiras
+def check_collision(nova_posicao):
+    for wall in barreiras:
+        if nova_posicao.colliderect(wall):
+            return True
+    return False
+
 # Classe do peixe
 class Peixe:
     def __init__(self, x, y):
@@ -77,16 +82,12 @@ class Peixe:
 # Lista de peixes
 peixes = [
     Peixe(100, 410),        
-    Peixe(80, 410),
+    Peixe(60, 410),
+    Peixe(200, 410),
+    Peixe(300, 410),
+  
     # escrever outros peixes...
 ]
-
-# Função para verificar colisão com barreiras
-def check_collision(nova_posicao):
-    for wall in barreiras:
-        if nova_posicao.colliderect(wall):
-            return True
-    return False
 
 # Lista para armazenar retângulos das paredes (barreiras)
 barreiras = []
@@ -170,16 +171,16 @@ while state != QUIT:
                 # Dependendo da tecla, altera a velocidade.
                 if player.speedx == 0 and player.speedy == 0:
                     if event.key == pygame.K_LEFT:
-                        player.speedx = -20
+                        player.speedx = -25
                         player.speedy = 0
                     if event.key == pygame.K_RIGHT:
-                        player.speedx = 20
+                        player.speedx = 25
                         player.speedy = 0
                     if event.key == pygame.K_UP:        
-                        player.speedy =- 20
+                        player.speedy =- 25
                         player.speedx = 0
                     if event.key == pygame.K_DOWN:
-                        player.speedy = 20
+                        player.speedy = 25
                         player.speedx = 0
 
     # Atualiza lista de peixes (remove os comidos)
