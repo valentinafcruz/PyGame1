@@ -3,9 +3,6 @@ from os import path
 
 FPS = 60
 BLACK = (0, 0, 0)
-GAME = 1
-QUIT = 2
-GAMEOVER = 3
 
 def game_over_screen(tela, WIDTH, HEIGHT):
     clock = pygame.time.Clock()
