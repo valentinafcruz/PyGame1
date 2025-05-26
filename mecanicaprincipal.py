@@ -39,10 +39,8 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 while state != QUIT:
     if state == INIT:
         state = init_screen(screen, WIDTH, HEIGHT)
-
     if state == FASE1:
         state = fase1(screen, WIDTH, HEIGHT, player)
-
     if state == FASE2:
             # Som de passar de nível
             pygame.mixer.music.pause()
