@@ -49,15 +49,12 @@ while state != QUIT:
             som_nivel.play()
             pygame.time.delay(1000)  # Espera 1 segundo
             pygame.mixer.music.unpause()
-
-        if state == GAMEOVER:
-            pygame.mixer.music.stop()
-            som_gameover.play()
-            pygame.time.delay(2000)  # Espera o som de game over (ajuste conforme o som)
-            state = GAMEOVER
     if state == GAMEOVER:
         pygame.mixer.music.stop()  # Garante que a música para
         state = game_over_screen(screen)
+        som_gameover.play()
+        pygame.time.delay(2000)  # Espera o som de game over (ajuste conforme o som)
+        state = GAMEOVER
     if state == QUIT:
         pygame.quit()
         exit()

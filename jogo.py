@@ -42,29 +42,27 @@ def fase1(screen, WIDTH, HEIGHT, player):
     grupo_inimigos1.add(inimigo1, inimigo2, inimigo3)
     state = FASE1
     # Inicia o jogo 
-    while state == FASE1:
-        # ----- Trata eventos
-        for event in pygame.event.get():
-            # ----- Verifica consequências
-            if event.type == pygame.QUIT:
-                state = QUIT
-            # Verifica se apertou alguma tecla.
-            if state == GAME:
-                if event.type == pygame.KEYDOWN:
-                    # Dependendo da tecla, altera a velocidade
-                    if player.speedx == 0 and player.speedy == 0:
-                        if event.key == pygame.K_LEFT:
-                            player.speedx = -25
-                            player.speedy = 0
-                        if event.key == pygame.K_RIGHT:
-                            player.speedx = 25
-                            player.speedy = 0
-                        if event.key == pygame.K_UP:        
-                            player.speedy =- 25
-                            player.speedx = 0
-                        if event.key == pygame.K_DOWN:
-                            player.speedy = 25
-                            player.speedx = 0
+    for event in pygame.event.get():
+        # ----- Verifica consequências
+        if event.type == pygame.QUIT:
+            state = QUIT
+        # Verifica se apertou alguma tecla.
+        if state == GAME:
+            if event.type == pygame.KEYDOWN:
+                # Dependendo da tecla, altera a velocidade
+                if player.speedx == 0 and player.speedy == 0:
+                    if event.key == pygame.K_LEFT:
+                        player.speedx = -25
+                        player.speedy = 0
+                    if event.key == pygame.K_RIGHT:
+                        player.speedx = 25
+                        player.speedy = 0
+                    if event.key == pygame.K_UP:        
+                        player.speedy =- 25
+                        player.speedx = 0
+                    if event.key == pygame.K_DOWN:
+                        player.speedy = 25
+                        player.speedx = 0
         # ----- Atualizações
         grupo_inimigos1.update(grupo_tiros_inimigos1)
         grupo_tiros_inimigos1.update(barreiras)
