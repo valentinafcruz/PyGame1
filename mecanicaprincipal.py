@@ -4,6 +4,7 @@ from init_screen import *
 from gameover import *
 from jogo import *
 from classes import *
+from win import *
 
 pygame.init()
 pygame.mixer.init()
@@ -21,6 +22,8 @@ INIT = 0
 GAME = 1
 QUIT = 2
 GAMEOVER = 3
+WIN = 4
+# Fases
 FASE1 = 4
 FASE2 = 5
 FASE3 = 6
@@ -49,6 +52,16 @@ while state != QUIT:
             som_nivel.play()
             pygame.time.delay(1000)  # Espera 1 segundo
             pygame.mixer.music.unpause()
+    if state == FASE3:
+            # Som de passar de nível
+            pygame.mixer.music.pause()
+            som_nivel.play()
+            pygame.time.delay(1000)  # Espera 1 segundo
+            pygame.mixer.music.unpause()
+    if state == WIN:
+        pygame.mixer.music.stop()
+        state = win_screen(screen, WIDTH, HEIGHT)
+        pygame.mixer.music.play(-1)
     if state == GAMEOVER:
         pygame.mixer.music.stop()  # Garante que a música para
         state = game_over_screen(screen)
