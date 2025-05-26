@@ -30,9 +30,9 @@ FASE3 = 6
 
 state = INIT
 clock = pygame.time.Clock()
-FPS = 60
+FPS = 30
 player = player()
-
+clock.tick(FPS) 
 
 
 # ----- Inicializa tela
@@ -40,11 +40,12 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # Loop principal
 while state != QUIT:
-    clock.tick(FPS) 
     if state == INIT:
         state = init_screen(screen, WIDTH, HEIGHT)
+
     if state == FASE1:
         state = fase1(screen, WIDTH, HEIGHT, player)
+
     if state == FASE2:
             # Som de passar de nível
             pygame.mixer.music.pause()
