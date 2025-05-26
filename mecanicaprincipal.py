@@ -22,11 +22,11 @@ INIT = 0
 GAME = 1
 QUIT = 2
 GAMEOVER = 3
-WIN = 4
 # Fases
 FASE1 = 4
 FASE2 = 5
 FASE3 = 6
+WIN  = 7
 
 state = INIT
 clock = pygame.time.Clock()
@@ -47,17 +47,20 @@ while state != QUIT:
         state = fase1(screen, WIDTH, HEIGHT, player)
 
     if state == FASE2:
-            # Som de passar de nível
-            pygame.mixer.music.pause()
-            som_nivel.play()
-            pygame.time.delay(1000)  # Espera 1 segundo
-            pygame.mixer.music.unpause()
-    if state == FASE3:
-            # Som de passar de nível
-            pygame.mixer.music.pause()
-            som_nivel.play()
-            pygame.time.delay(1000)  # Espera 1 segundo
-            pygame.mixer.music.unpause()
+        pygame.mixer.music.pause()
+        som_nivel.play()
+        pygame.time.delay(1000)
+        pygame.mixer.music.unpause()
+
+        state = fase2(screen, WIDTH, HEIGHT, player)
+
+    # if state == FASE3:
+    #     pygame.mixer.music.pause()
+    #     som_nivel.play()
+    #     pygame.time.delay(1000)
+    #     pygame.mixer.music.unpause()
+
+    #     state = fase3(screen, WIDTH, HEIGHT, player)
     if state == WIN:
         pygame.mixer.music.stop()
         state = win_screen(screen, WIDTH, HEIGHT)
@@ -72,3 +75,4 @@ while state != QUIT:
         exit()
 pygame.quit()
 exit()
+

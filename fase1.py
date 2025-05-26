@@ -24,7 +24,7 @@ def paredes(x, y, w, h):
 # Lista para armazenar retângulos das paredes (barreiras)
 barreiras = []
 # ----- Função para desenhar o labirinto 
-def labirinto1():
+def mapa_level1():
     window.fill(BLACK)
     barreiras.clear()
     #Paredes - Labirinto 1
@@ -71,6 +71,6 @@ def labirinto1():
     # draw_wall2(710, 260, 30, 530)
     # draw_wall2(360, 160, 30, 30)
     # draw_wall2(660, 710, 30, 30)
-def labirinto2():
-    window.fill(BLACK)
-    barreiras.clear()
+# def labirinto2():
+#     window.fill(BLACK)
+#     barreiras.clear()

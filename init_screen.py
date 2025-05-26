@@ -1,5 +1,5 @@
 import pygame 
-from funções_variáveis import *
+from fase1 import *
 from os import path
 
 INIT = 0
