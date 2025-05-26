@@ -1,4 +1,13 @@
-# # # FUNÇÕES
+# # # FUNÇÕES E VARIÁVEIS
+import pygame
+
+WIDTH = 800
+HEIGHT = 800
+window = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption('FatCatRush')
+# Cores
+BLACK = (0, 0, 0)
+YELLOW = (255,215,0)
 
 # Função para verificar colisão com barreiras
 def check_collision(nova_posicao):
@@ -11,7 +20,6 @@ def paredes(x, y, w, h):
         rect = pygame.Rect(x, y, w, h)
         pygame.draw.rect(window, YELLOW, rect)
         barreiras.append(rect)
-
 
 # Lista para armazenar retângulos das paredes (barreiras)
 barreiras = []
@@ -63,3 +71,6 @@ def labirinto1():
     # draw_wall2(710, 260, 30, 530)
     # draw_wall2(360, 160, 30, 30)
     # draw_wall2(660, 710, 30, 30)
+def labirinto2():
+    window.fill(BLACK)
+    barreiras.clear()

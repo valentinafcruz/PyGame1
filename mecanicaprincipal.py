@@ -1,35 +1,73 @@
-#Mecânica das telas 
+# Mecânica das telas 
 import pygame
 from init_screen import *
 from gameover import *
 from jogo import *
+from classes import *
+from win import *
+
+pygame.init()
+pygame.mixer.init()
+
+# Música de fundo
+pygame.mixer.music.load('som/musica de fundo.mp3')
+pygame.mixer.music.play(-1)
+
+# Sons de evento
+som_nivel = pygame.mixer.Sound('som/passou de nivel musica.mp3')
+som_gameover = pygame.mixer.Sound('som/gameover music.wav')
+from classes import *
 
 INIT = 0
 GAME = 1
 QUIT = 2
 GAMEOVER = 3
+WIN = 4
+# Fases
 FASE1 = 4
 FASE2 = 5
 FASE3 = 6
 
 state = INIT
+clock = pygame.time.Clock()
+FPS = 60
+player = player()
 
-# Inicializa o pygame
-pygame.init()
+
 
 # ----- Inicializa tela
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-# ----- Inicializa assets
 
+# Loop principal
 while state != QUIT:
+    clock.tick(FPS) 
     if state == INIT:
         state = init_screen(screen, WIDTH, HEIGHT)
     if state == FASE1:
-        state = fase1(screen, WIDTH, HEIGHT)
-
-    # if state == FASE2:
-    #     state = fase2(screen)
-    # if state == FASE3:
-    #     state = fase3(screen)
+        state = fase1(screen, WIDTH, HEIGHT, player)
+    if state == FASE2:
+            # Som de passar de nível
+            pygame.mixer.music.pause()
+            som_nivel.play()
+            pygame.time.delay(1000)  # Espera 1 segundo
+            pygame.mixer.music.unpause()
+    if state == FASE3:
+            # Som de passar de nível
+            pygame.mixer.music.pause()
+            som_nivel.play()
+            pygame.time.delay(1000)  # Espera 1 segundo
+            pygame.mixer.music.unpause()
+    if state == WIN:
+        pygame.mixer.music.stop()
+        state = win_screen(screen, WIDTH, HEIGHT)
+        pygame.mixer.music.play(-1)
     if state == GAMEOVER:
-        state = game_over_screen(screen)
+        pygame.mixer.music.stop()
+        state = game_over_screen(screen, WIDTH, HEIGHT)
+        if state == INIT:
+            pygame.mixer.music.play(-1) 
+    if state == QUIT:
+        pygame.quit()
+        exit()
+pygame.quit()
+exit()

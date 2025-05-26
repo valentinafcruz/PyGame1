@@ -1,8 +1,15 @@
 # Arquivo para definir as classes do jogo
 import pygame
 from os import path
+from funções_variáveis import *
+# ----- Inicializa assets
+peixe_img = pygame.image.load("assets/peixe_sem_fundo.png").convert_alpha()
+peixe_img = pygame.transform.scale(peixe_img, (30, 30))
+gato_img = pygame.image.load("assets/gato_magro_sem_fundo.png").convert_alpha()
+gato_img = pygame.transform.scale(gato_img, (50, 50))
 
-
+WIDTH = 800
+HEIGHT = 800
 # Classe do Player
 
 class player(pygame.sprite.Sprite):
@@ -11,11 +18,10 @@ class player(pygame.sprite.Sprite):
         self.rect = pygame.Rect(50, 50, 50, 50) #coordenadas iniciais do gato, tamanho do gato
         self.speedx = 0
         self.speedy = 0
-        self.image = pygame.image.load('assets/gato_magro_sem_fundo.png').convert_alpha()
+        self.image = gato_img
         self.image = pygame.transform.scale(self.image, (50, 50))
 
     def move(self):
-
         nova_posicao = pygame.Rect(self.rect.x + self.speedx, self.rect.y + self.speedy, self.rect.width, self.rect.height)
         if not check_collision(nova_posicao):
             if self.rect.right > WIDTH:
@@ -36,6 +42,7 @@ class player(pygame.sprite.Sprite):
         else:
             self.speedx = 0
             self.speedy = 0
+        print(self.speedx, self.speedy)
 
 
     def draw(self):

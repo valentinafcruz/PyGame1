@@ -1,4 +1,5 @@
 import pygame 
+from funções_variáveis import *
 from os import path
 
 INIT = 0
@@ -8,11 +9,6 @@ GAMEOVER = 3
 FASE1 = 4
 FASE2 = 5
 FASE3 = 6
-
-
-# from jogo import IMG_DIR, BLACK, FPS, GAME, QUIT
-FPS = 60
-BLACK = (0, 0, 0)
 
 def init_screen(tela, WIDTH, HEIGHT):
     # Variável para o ajuste de velocidade
@@ -38,6 +34,5 @@ def init_screen(tela, WIDTH, HEIGHT):
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 if botao_rect.collidepoint(evento.pos):
                     return FASE1
-                    running = False
 
 
