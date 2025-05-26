@@ -1,8 +1,19 @@
-#Mecânica das telas 
+# Mecânica das telas 
 import pygame
 from init_screen import *
 from gameover import *
 from jogo import *
+
+pygame.init()
+pygame.mixer.init()
+
+# Música de fundo
+pygame.mixer.music.load('som/musica de fundo.mp3')
+pygame.mixer.music.play(-1)
+
+# Sons de evento
+som_nivel = pygame.mixer.Sound('som/passou de nivel musica.mp3')
+som_gameover = pygame.mixer.Sound('som/gameover music.wav')
 
 INIT = 0
 GAME = 1
@@ -14,22 +25,30 @@ FASE3 = 6
 
 state = INIT
 
-# Inicializa o pygame
-pygame.init()
-
 # ----- Inicializa tela
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-# ----- Inicializa assets
 
+# Loop principal
 while state != QUIT:
     if state == INIT:
         state = init_screen(screen, WIDTH, HEIGHT)
+
     if state == FASE1:
         state = fase1(screen, WIDTH, HEIGHT)
 
-    # if state == FASE2:
-    #     state = fase2(screen)
-    # if state == FASE3:
-    #     state = fase3(screen)
+        if state == FASE2:
+            # Som de passar de nível
+            pygame.mixer.music.pause()
+            som_nivel.play()
+            pygame.time.delay(1000)  # Espera 1 segundo
+            pygame.mixer.music.unpause()
+
+        if state == GAMEOVER:
+            pygame.mixer.music.stop()
+            som_gameover.play()
+            pygame.time.delay(2000)  # Espera o som de game over (ajuste conforme o som)
+            state = GAMEOVER
+
     if state == GAMEOVER:
+        pygame.mixer.music.stop()  # Garante que a música para
         state = game_over_screen(screen)
