@@ -21,7 +21,6 @@ def paredes(x, y, w, h):
         pygame.draw.rect(window, YELLOW, rect)
         barreiras.append(rect)
 
-
 # Lista para armazenar retângulos das paredes (barreiras)
 barreiras = []
 # ----- Função para desenhar o labirinto 

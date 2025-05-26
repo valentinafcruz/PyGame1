@@ -22,7 +22,6 @@ class player(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (50, 50))
 
     def move(self):
-
         nova_posicao = pygame.Rect(self.rect.x + self.speedx, self.rect.y + self.speedy, self.rect.width, self.rect.height)
         if not check_collision(nova_posicao):
             if self.rect.right > WIDTH:

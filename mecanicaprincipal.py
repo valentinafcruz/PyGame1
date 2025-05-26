@@ -30,9 +30,9 @@ FASE3 = 6
 
 state = INIT
 clock = pygame.time.Clock()
-FPS = 30
+FPS = 60
 player = player()
-clock.tick(FPS) 
+
 
 
 # ----- Inicializa tela
@@ -40,6 +40,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # Loop principal
 while state != QUIT:
+    clock.tick(FPS) 
     if state == INIT:
         state = init_screen(screen, WIDTH, HEIGHT)
     if state == FASE1:
