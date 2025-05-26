@@ -71,3 +71,6 @@ def labirinto1():
     # draw_wall2(710, 260, 30, 530)
     # draw_wall2(360, 160, 30, 30)
     # draw_wall2(660, 710, 30, 30)
+def labirinto2():
+    window.fill(BLACK)
+    barreiras.clear()

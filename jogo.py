@@ -32,6 +32,13 @@ def fase1(screen, WIDTH, HEIGHT, player):
   
     # escrever outros peixes1...
     ]
+    # ----- Grupos de sprites
+    grupo_inimigos1 = pygame.sprite.Group()
+    grupo_tiros_inimigos1 = pygame.sprite.Group()
+
+    inimigo1 = Inimigo(300, 90, 'baixo')
+    grupo_inimigos1.add(inimigo1)
+    
     state = FASE1
     # Inicia o jogo 
     while state != QUIT and state != GAMEOVER:
@@ -46,29 +53,29 @@ def fase1(screen, WIDTH, HEIGHT, player):
                     # Dependendo da tecla, altera a velocidade
                     if player.speedx == 0 and player.speedy == 0:
                         if event.key == pygame.K_LEFT:
-                            player.speedx = -25
+                            player.speedx = -5
                             player.speedy = 0
                         if event.key == pygame.K_RIGHT:
-                            player.speedx = 25
+                            player.speedx = 5
                             player.speedy = 0
                         if event.key == pygame.K_UP:        
-                            player.speedy =- 25
+                            player.speedy =- 5
                             player.speedx = 0
                         if event.key == pygame.K_DOWN:
-                            player.speedy = 25
+                            player.speedy = 5
                             player.speedx = 0
 
             # Atualiza lista de peixes1 (remove os comidos)
-            peixes1 = [peixe for peixe in peixes1 if not peixe.foi_comido(player.rect)]
+        peixes1 = [peixe for peixe in peixes1 if not peixe.foi_comido(player.rect)]
 
-            for peixe in peixes1:
-                peixe.desenhar(window)
+        for peixe in peixes1:
+            peixe.desenhar(window)
 
             # ----- Gera saídas
 
-            player.move()  # Move o personagem
-            player.draw() # Desenha o personagem
-            pygame.display.update()  # Atualiza a tela
+        player.move()  # Move o personagem
+        player.draw() # Desenha o personagem
+        pygame.display.update()  # Atualiza a tela
             
     return state
 
@@ -82,3 +89,38 @@ def fase2(screen, WIDTH, HEIGHT, player):
     inimigo2 = Inimigo(600, 220, 'direita')
     inimigo3 = Inimigo(235, 370, 'esquerda')
     grupo_inimigos1.add(inimigo1, inimigo2, inimigo3)
+
+        # Lista de peixes1
+    peixes2 = [
+    Peixe(100, 410),        
+    Peixe(60, 410),
+    Peixe(200, 410),
+    Peixe(300, 410),
+  
+    # escrever outros peixes1...
+    ]
+    state = FASE2
+    # Inicia o jogo 
+    while state != QUIT and state != GAMEOVER:
+        labirinto2() # Desenha o labirinto
+        for event in pygame.event.get():
+            # ----- Verifica consequências
+            if event.type == pygame.QUIT:
+                return QUIT
+            # Verifica se apertou alguma tecla.
+            if state == FASE1:
+                if event.type == pygame.KEYDOWN:
+                    # Dependendo da tecla, altera a velocidade
+                    if player.speedx == 0 and player.speedy == 0:
+                        if event.key == pygame.K_LEFT:
+                            player.speedx = -5
+                            player.speedy = 0
+                        if event.key == pygame.K_RIGHT:
+                            player.speedx = 5
+                            player.speedy = 0
+                        if event.key == pygame.K_UP:        
+                            player.speedy =- 5
+                            player.speedx = 0
+                        if event.key == pygame.K_DOWN:
+                            player.speedy = 5
+                            player.speedx = 0
