@@ -11,6 +11,7 @@ def win_screen(tela, WIDTH, HEIGHT):
     fundo = pygame.image.load(path.join('assets', 'win_screen.jpeg')).convert()
     fundo = pygame.transform.scale(fundo, (WIDTH, HEIGHT))
 
+
     running = True
     while running:
         tela.blit(fundo, (0, 0))
@@ -25,3 +26,5 @@ def win_screen(tela, WIDTH, HEIGHT):
             # Se apertar qualquer tecla, volta para a tela inicial
             if evento.type == pygame.KEYDOWN:
                 return 0  # Volta para o estado INIT (menu inicial)
+    
+    
