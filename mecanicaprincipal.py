@@ -8,7 +8,7 @@ pygame.display.set_caption('FatCatRush')
 
 from init_screen import *
 from gameover import *
-from PyGame1.funçõesdasfases import *
+from funçõesdasfases import *
 from classes import *
 from win import *
 
