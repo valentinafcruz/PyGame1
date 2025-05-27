@@ -22,6 +22,7 @@ pygame.mixer.music.play(-1)
 # Sons de evento
 som_nivel = pygame.mixer.Sound('som/passou de nivel musica.mp3')
 som_gameover = pygame.mixer.Sound('som/gameover music.wav')
+som_vitoria = pygame.mixer.Sound('som/som_vitoria.wav')
 from classes import *
 
 INIT = 0
@@ -74,13 +75,15 @@ while state != QUIT:
         som_nivel.play()
         pygame.time.delay(1000)
         pygame.mixer.music.unpause()
-
-        
         state = fase3(screen, WIDTH, HEIGHT, player, tempo_formt)
+
     if state == WIN:
         pygame.mixer.music.stop()
+        som_vitoria.play()
+        pygame.time.delay(1000)
         state = win_screen(screen, WIDTH, HEIGHT, tempo_formt)
         pygame.mixer.music.play(-1)
+        
     if state == GAMEOVER:
         pygame.mixer.music.stop()
         som_gameover.play()

@@ -319,7 +319,7 @@ def fase3(screen, WIDTH, HEIGHT, player, tempo):
     Peixe(210, 360),  # área central
     Peixe(250, 710),  # canto inferior esquerdo, difícil de sair depois
     Peixe(210, 410),  # caminho central com gato próximo
-    Peixe(380, 300),  # área cercada, precisa fazer curva
+    # Peixe(380, 300),  # área cercada, precisa fazer curva
     Peixe(580, 690),  # canto inferior direito com caminho estreito
     Peixe(690, 110),  # canto superior direito, exige curva longa
     ]
