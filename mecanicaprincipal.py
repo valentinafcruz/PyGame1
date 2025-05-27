@@ -8,7 +8,7 @@ pygame.display.set_caption('FatCatRush')
 
 from init_screen import *
 from gameover import *
-from jogo import *
+from PyGame1.funçõesdasfases import *
 from classes import *
 from win import *
 
@@ -50,6 +50,13 @@ while state != QUIT:
         state = init_screen(screen, WIDTH, HEIGHT)
 
     if state == FASE1:
+        crom_tempo = pygame.time.get_ticks()
+        min = crom_tempo // 60
+        seg = crom_tempo % 60
+        tempo_formt = f"{min:02d}:{seg:02d}"
+        font = pygame.font.SysFont(None, 36)
+        tempo_tela = font.render(tempo_formt, True, (0, 0, 0))  # Cor branca
+        screen.blit(tempo_tela, (0, 0))  # Posição no canto superior esquerdo
         state = fase1(screen, WIDTH, HEIGHT, player)
 
     if state == FASE2:
@@ -58,7 +65,7 @@ while state != QUIT:
         pygame.time.delay(1000)
         pygame.mixer.music.unpause()
 
-        state = fase2(screen, WIDTH, HEIGHT, player)
+        state = fase2(screen, WIDTH, HEIGHT, player, crom_tempo)
 
     if state == FASE3:
         pygame.mixer.music.pause()

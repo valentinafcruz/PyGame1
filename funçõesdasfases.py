@@ -2,9 +2,9 @@
 # ----- Importa e inicia pacotes
 import pygame    
 from classes import *
-from fase1 import *
-from fase2 import *
-from fase3 import *
+from PyGame1.fase1_mapa import *
+from PyGame1.fase2_mapa import *
+from PyGame1.fase3_mapa import *
 
 pygame.init()
 
