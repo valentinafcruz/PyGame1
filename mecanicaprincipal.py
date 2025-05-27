@@ -46,6 +46,7 @@ while state != QUIT:
     if state == FASE1:
         state = fase1(screen, WIDTH, HEIGHT, player)
 
+
     if state == FASE2:
         pygame.mixer.music.pause()
         som_nivel.play()
@@ -54,11 +55,11 @@ while state != QUIT:
 
         state = fase2(screen, WIDTH, HEIGHT, player)
 
-    # if state == FASE3:
-    #     pygame.mixer.music.pause()
-    #     som_nivel.play()
-    #     pygame.time.delay(1000)
-    #     pygame.mixer.music.unpause()
+    if state == FASE3:
+        pygame.mixer.music.pause()
+        som_nivel.play()
+        pygame.time.delay(1000)
+        pygame.mixer.music.unpause()
 
     #     state = fase3(screen, WIDTH, HEIGHT, player)
     if state == WIN:
