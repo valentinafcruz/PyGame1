@@ -325,8 +325,6 @@ def fase3(screen, WIDTH, HEIGHT, player, tempo):
     while state != QUIT and state != GAMEOVER:
         screen.fill((0, 0, 0))  # Limpa a tela
         barreiras = mapa_level3(screen)   # Desenha o labirinto
-        screen.blit(tempo, (0, 0))
-        pygame.display.update()  # Posição no canto superior esquerdo
         # Eventos
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
