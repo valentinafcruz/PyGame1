@@ -51,3 +51,4 @@ def mapa_level3():
     draw_wall1(250, 50, 50, 100)      # 17
     draw_wall1(200, 250, 50, 50)
     draw_wall1(50, 350, 50, 50)
+    return barreiras

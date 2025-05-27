@@ -23,6 +23,7 @@ WIN = 7
 
 def fase1(screen, WIDTH, HEIGHT, player):
     #Define a posição inicial do player
+
     player.rect.x = 50
     player.rect.y = 700  
     # Lista de peixes1
@@ -149,7 +150,7 @@ def fase1(screen, WIDTH, HEIGHT, player):
     state = FASE1
     # Inicia o jogo 
     while state != QUIT and state != GAMEOVER:
-        mapa_level1() # Desenha o labirinto
+        barreiras = mapa_level1(screen) # Desenha o labirinto
         for event in pygame.event.get():
             # ----- Verifica consequências
             if event.type == pygame.QUIT:
@@ -171,17 +172,21 @@ def fase1(screen, WIDTH, HEIGHT, player):
                         if event.key == pygame.K_DOWN:
                             player.speedy = 5
                             player.speedx = 0
+        
+        if check_collision(player.rect.move(player.speedx, player.speedy), barreiras):
+            player.speedx = 0
+            player.speedy = 0
 
             # Atualiza lista de peixes1 (remove os comidos)
         peixes1 = [peixe for peixe in peixes1 if not peixe.foi_comido(player.rect)]
 
         for peixe in peixes1:
-            peixe.desenhar(window)
+            peixe.desenhar(screen)
 
             # ----- Gera saídas
 
-        player.move()  # Move o personagem
-        player.draw() # Desenha o personagem
+        player.move(barreiras)  # Move o personagem
+        player.draw(screen) # Desenha o personagem
         pygame.display.update()  # Atualiza a tela
         
         if len(peixes1) == 0:
@@ -221,7 +226,7 @@ def fase2(screen, WIDTH, HEIGHT, player):
     # Loop da fase
     while state != QUIT and state != GAMEOVER:
         screen.fill((0, 0, 0))  # Limpa a tela
-        mapa_level2()  # Desenha o labirinto
+        barreiras = mapa_level2(screen)  # Desenha o labirinto
 
         # Eventos
         for event in pygame.event.get():
@@ -241,6 +246,9 @@ def fase2(screen, WIDTH, HEIGHT, player):
                     if event.key == pygame.K_DOWN:
                         player.speedy = 5
                         player.speedx = 0
+        if check_collision(player.rect.move(player.speedx, player.speedy), barreiras):
+            player.speedx = 0
+            player.speedy = 0
 
         # Atualiza inimigos (corrigido)
         grupo_inimigos.update(grupo_tiros_inimigos)
@@ -254,8 +262,8 @@ def fase2(screen, WIDTH, HEIGHT, player):
         grupo_inimigos.draw(screen)
 
         # Move e desenha o jogador
-        player.move()
-        player.draw()
+        player.move(barreiras)
+        player.draw(screen)
 
         pygame.display.update()
 
@@ -293,7 +301,7 @@ def fase3(screen, WIDTH, HEIGHT, player):
     # Loop da fase
     while state != QUIT and state != GAMEOVER:
         screen.fill((0, 0, 0))  # Limpa a tela
-        mapa_level2()  # Desenha o labirinto
+        barreiras = mapa_level2(screen)   # Desenha o labirinto
 
         # Eventos
         for event in pygame.event.get():
@@ -313,7 +321,9 @@ def fase3(screen, WIDTH, HEIGHT, player):
                     if event.key == pygame.K_DOWN:
                         player.speedy = 5
                         player.speedx = 0
-
+        if check_collision(player.rect.move(player.speedx, player.speedy), barreiras):
+            player.speedx = 0
+            player.speedy = 0
         # Atualiza inimigos (corrigido)
         grupo_inimigos.update(grupo_tiros_inimigos)
 
@@ -326,8 +336,8 @@ def fase3(screen, WIDTH, HEIGHT, player):
         grupo_inimigos.draw(screen)
 
         # Move e desenha o jogador
-        player.move()
-        player.draw()
+        player.move(barreiras)
+        player.draw(screen)
 
         pygame.display.update()
 

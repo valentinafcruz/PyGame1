@@ -21,9 +21,11 @@ class player(pygame.sprite.Sprite):
         self.image = gato_img
         self.image = pygame.transform.scale(self.image, (50, 50))
 
-    def move(self):
+    # def move(self):
+    #     nova_posicao = pygame.Rect(self.rect.x + self.speedx, self.rect.y + self.speedy, self.rect.width, self.rect.height)
+    def move(self, barreiras):
         nova_posicao = pygame.Rect(self.rect.x + self.speedx, self.rect.y + self.speedy, self.rect.width, self.rect.height)
-        if not check_collision(nova_posicao):
+        if not check_collision(nova_posicao,barreiras):
             if self.rect.right > WIDTH:
                 self.rect.right = WIDTH
                 self.speedx = 0
@@ -45,8 +47,8 @@ class player(pygame.sprite.Sprite):
         print(self.speedx, self.speedy)
 
 
-    def draw(self):
-        window.blit(self.image, (self.rect.x, self.rect.y))
+    def draw(self,tela):
+        tela.blit(self.image, (self.rect.x, self.rect.y))
 
 # Classe do peixe
 class Peixe:

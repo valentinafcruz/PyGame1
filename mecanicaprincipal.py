@@ -1,13 +1,19 @@
 # Mecânica das telas 
 import pygame
+pygame.init()
+pygame.mixer.init()
+WIDTH, HEIGHT = 800, 800
+screen = pygame.display.set_mode((WIDTH, HEIGHT)) 
+pygame.display.set_caption('FatCatRush')
+
 from init_screen import *
 from gameover import *
 from jogo import *
 from classes import *
 from win import *
 
-pygame.init()
-pygame.mixer.init()
+
+
 
 # Música de fundo
 pygame.mixer.music.load('som/musica de fundo.mp3')
@@ -46,23 +52,21 @@ while state != QUIT:
     if state == FASE1:
         state = fase1(screen, WIDTH, HEIGHT, player)
 
-
     if state == FASE2:
         pygame.mixer.music.pause()
         som_nivel.play()
         pygame.time.delay(1000)
         pygame.mixer.music.unpause()
-        # screen.fill((0,0,0))
+
         state = fase2(screen, WIDTH, HEIGHT, player)
 
-    if state == FASE3:
-        pygame.mixer.music.pause()
-        som_nivel.play()
-        pygame.time.delay(1000)
-        pygame.mixer.music.unpause()
-        window.fill((0,0,0))
-        state = fase3(screen, WIDTH, HEIGHT, player)
+    # if state == FASE3:
+    #     pygame.mixer.music.pause()
+    #     som_nivel.play()
+    #     pygame.time.delay(1000)
+    #     pygame.mixer.music.unpause()
 
+    #     state = fase3(screen, WIDTH, HEIGHT, player)
     if state == WIN:
         pygame.mixer.music.stop()
         state = win_screen(screen, WIDTH, HEIGHT)
