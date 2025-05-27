@@ -1,5 +1,6 @@
 import pygame
 import sys
+import assets
 
 # Inicializa o Pygame
 pygame.init()
@@ -50,15 +51,6 @@ peixes = [
 gato_x, gato_y = 100, 100
 gato_speed = 5
 
-# Função para desenhar tudo
-def desenhar_tela():
-    screen.fill((0, 0, 0))  # Fundo preto
-    screen.blit(gato_img, (gato_x, gato_y))
-
-    for peixe in peixes:
-        peixe.desenhar(screen)
-
-    pygame.display.flip()
 
 # Loop principal
 rodando = True
