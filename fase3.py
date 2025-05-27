@@ -23,7 +23,7 @@ def draw_wall1(x, y, width, height):
     barreiras.append(pygame.Rect(x, y, width, height))
 
 # Função que desenha o labirinto
-def mapa_level3():
+def mapa_level3(screen):
     barreiras.clear()
     
     # Cantos
@@ -52,3 +52,8 @@ def mapa_level3():
     draw_wall1(200, 250, 50, 50)
     draw_wall1(50, 350, 50, 50)
     return barreiras
+def check_collision(nova_posicao, barreiras):
+    for wall in barreiras:
+        if nova_posicao.colliderect(wall):
+            return True
+    return False
