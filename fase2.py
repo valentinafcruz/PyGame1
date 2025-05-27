@@ -10,16 +10,31 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Mapa Level2 - Visualização")
 
 # Cor das paredes
+BLACK = (0, 0, 0)
+YELLOW = (255,215,0)
+
 BLACK = (255, 255, 255)
 WHITE  = (0, 0, 0)
-WALL_COLOR = (0, 255, 0)
+
+
+# Função para verificar colisão com barreiras
+def check_collision(nova_posicao):
+    for wall in barreiras:
+        if nova_posicao.colliderect(wall):
+            return True
+    return False 
+
+def paredes(x, y, w, h):
+        rect = pygame.Rect(x, y, w, h)
+        pygame.draw.rect(screen, YELLOW, rect)
+        barreiras.append(rect)
 
 # Lista para armazenar as barreiras (opcional, se quiser detectar colisões depois)
 barreiras = []
 
 # Função para desenhar paredes
 def draw_wall1(x, y, width, height):
-    pygame.draw.rect(screen, WALL_COLOR, (x, y, width, height))
+    pygame.draw.rect(screen, YELLOW, (x, y, width, height))
     barreiras.append(pygame.Rect(x, y, width, height))
 
 # Função que desenha o labirinto
