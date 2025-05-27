@@ -13,8 +13,12 @@ pygame.display.set_caption("Gato Come Peixes")
 clock = pygame.time.Clock()
 
 # Imagens
-gato_img = pygame.image.load("assets/gato_sem_fundo.png")
-gato_img = pygame.transform.scale(gato_img, (50, 50))
+gato_img1 = pygame.image.load("assets/gato_sem_fundo.png")
+gato_img1 = pygame.transform.scale(gato_img1, (50, 50))
+gato_img2 = pygame.image.load("assets/gato_medio_sem_fundo.png")
+gato_img2 = pygame.transform.scale(gato_img2, (50, 50))
+gato_img3 = pygame.image.load("assets/gato_gordo_sem_fundo.png")
+gato_img3 = pygame.transform.scale(gato_img3, (50, 50))
 
 peixe_img = pygame.image.load("assets/WhatsApp Image 2025-05-14 at 09.56.52.jpeg")
 peixe_img = pygame.transform.scale(peixe_img, (30, 30))

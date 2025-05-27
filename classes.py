@@ -5,21 +5,29 @@ from fase1 import *
 # ----- Inicializa assets
 peixe_img = pygame.image.load("assets/peixe_sem_fundo.png").convert_alpha()
 peixe_img = pygame.transform.scale(peixe_img, (30, 30))
-gato_img = pygame.image.load("assets/gato_magro_sem_fundo.png").convert_alpha()
-gato_img = pygame.transform.scale(gato_img, (50, 50))
+
+gato_imgs = [
+    pygame.image.load("assets/gato_magro_sem_fundo.png"),
+    pygame.image.load("assets/gato_medio_sem_fundo.png"),
+    pygame.image.load("assets/gato_gordo_sem_fundo.png")
+]
+
+# Redimensiona as imagens
+gato_imgs = [pygame.transform.scale(img, (50, 50)) for img in gato_imgs]
 
 WIDTH = 800
 HEIGHT = 800
 # Classe do Player
 
 class player(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self,imagens):
         super().__init__()
-        self.rect = pygame.Rect(50, 50, 50, 50) #coordenadas iniciais do gato, tamanho do gato
+        self.imagens = imagens
+        self.nivel = 0
+        self.image = self.imagens[self.nivel]
+        self.rect = self.image.get_rect()
         self.speedx = 0
         self.speedy = 0
-        self.image = gato_img
-        self.image = pygame.transform.scale(self.image, (50, 50))
 
     # def move(self):
     #     nova_posicao = pygame.Rect(self.rect.x + self.speedx, self.rect.y + self.speedy, self.rect.width, self.rect.height)
@@ -46,9 +54,14 @@ class player(pygame.sprite.Sprite):
             self.speedy = 0
         print(self.speedx, self.speedy)
 
-
-    def draw(self,tela):
-        tela.blit(self.image, (self.rect.x, self.rect.y))
+    def draw(self, screen):
+        self.image = self.imagens[self.nivel]
+        screen.blit(self.image, self.rect.topleft)
+    # def draw(self,tela):
+    #     tela.blit(self.image, (self.rect.x, self.rect.y))
+    def evoluir(self):
+        if self.nivel < len(self.imagens) - 1:
+            self.nivel += 1
 
 # Classe do peixe
 class Peixe:
@@ -62,3 +75,60 @@ class Peixe:
 
     def foi_comido(self, gato_rect):
         return self.rect.colliderect(gato_rect)
+
+#Classe do inimigo e do tiro do inimigo
+class Inimigo(pygame.sprite.Sprite):
+    def __init__(self, x, y, direcao):
+        super().__init__()
+        self.image = pygame.image.load('assets/Cachorro Inimigo.png').convert_alpha()
+        self.image = pygame.transform.scale(self.image, (47, 50))
+        self.rect = self.image.get_rect(center=(x, y))
+        self.direcao = direcao
+        self.tempo_ultimo_tiro = pygame.time.get_ticks()
+        self.intervalo_tiro = 1000  # Intervalo de tiro (ms)
+
+    def update(self, grupo_tiros):
+        agora = pygame.time.get_ticks()
+        if agora - self.tempo_ultimo_tiro > self.intervalo_tiro:
+            
+            if self.direcao == 'cima':
+                x = self.rect.centerx
+                y = self.rect.top
+            elif self.direcao == 'baixo':
+                x = self.rect.centerx
+                y = self.rect.bottom
+            elif self.direcao == 'esquerda':
+                x = self.rect.left
+                y = self.rect.centery
+            elif self.direcao == 'direita':
+                x = self.rect.right
+                y = self.rect.centery
+
+            tiro = TiroInimigo(x, y, self.direcao)
+            grupo_tiros.add(tiro)
+            self.tempo_ultimo_tiro = agora
+
+
+class TiroInimigo(pygame.sprite.Sprite):
+    def __init__(self, x, y, direcao):
+        super().__init__()
+        self.image = pygame.image.load('assets/Osso Tiro.png').convert_alpha()
+        self.image = pygame.transform.scale(self.image, (30, 30))
+        self.rect = self.image.get_rect(center=(x, y))
+        self.velocidade = 3
+        self.direcao = direcao # Direção inicial
+
+    def update(self, paredes):
+        if self.direcao == 'cima':
+            self.rect.y -= self.velocidade
+        elif self.direcao == 'baixo':
+            self.rect.y += self.velocidade
+        elif self.direcao == 'esquerda':
+            self.rect.x -= self.velocidade
+        elif self.direcao == 'direita':
+            self.rect.x += self.velocidade
+
+        for parede in paredes:
+            if self.rect.colliderect(parede):
+                self.kill()
+                break

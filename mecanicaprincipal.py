@@ -37,7 +37,7 @@ WIN  = 7
 state = INIT
 clock = pygame.time.Clock()
 FPS = 30
-player = player()
+player = player(gato_imgs)
 clock.tick(FPS) 
 
 
@@ -60,13 +60,13 @@ while state != QUIT:
 
         state = fase2(screen, WIDTH, HEIGHT, player)
 
-    # if state == FASE3:
-    #     pygame.mixer.music.pause()
-    #     som_nivel.play()
-    #     pygame.time.delay(1000)
-    #     pygame.mixer.music.unpause()
+    if state == FASE3:
+        pygame.mixer.music.pause()
+        som_nivel.play()
+        pygame.time.delay(1000)
+        pygame.mixer.music.unpause()
 
-    #     state = fase3(screen, WIDTH, HEIGHT, player)
+        state = fase3(screen, WIDTH, HEIGHT, player)
     if state == WIN:
         pygame.mixer.music.stop()
         state = win_screen(screen, WIDTH, HEIGHT)

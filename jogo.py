@@ -1,7 +1,6 @@
 # ===== Inicialização =====
 # ----- Importa e inicia pacotes
-import pygame
-from inimigo import *     
+import pygame    
 from classes import *
 from fase1 import *
 from fase2 import *
@@ -23,121 +22,121 @@ WIN = 7
 
 def fase1(screen, WIDTH, HEIGHT, player):
     #Define a posição inicial do player
-
+    player.nivel = 0  # Gato magro
     player.rect.x = 50
     player.rect.y = 700  
     # Lista de peixes1
     peixes1 = [
     Peixe(160, 360),
-    # Peixe(110, 360),        
-    # Peixe(60, 410),
-    # Peixe(210, 360),
-    # Peixe(60, 360),        
-    # Peixe(60, 310),
-    # Peixe(60, 260),
-    # Peixe(60, 310),
-    # Peixe(60, 610),        
-    # Peixe(60, 660),
-    # Peixe(110, 610),
-    # Peixe(110, 710),
-    # Peixe(160, 610),
+    Peixe(110, 360),        
+    Peixe(60, 410),
+    Peixe(210, 360),
+    Peixe(60, 360),        
+    Peixe(60, 310),
+    Peixe(60, 260),
+    Peixe(60, 310),
+    Peixe(60, 610),        
+    Peixe(60, 660),
+    Peixe(110, 610),
+    Peixe(110, 710),
+    Peixe(160, 610),
 
-    # Peixe(160, 710),
-    # Peixe(210, 710),
-    # Peixe(210, 660),        
-    # Peixe(210, 610),
-    # Peixe(210, 560),
-    # Peixe(210, 510),
-    # Peixe(210, 460),
-    # Peixe(210, 410),
+    Peixe(160, 710),
+    Peixe(210, 710),
+    Peixe(210, 660),        
+    Peixe(210, 610),
+    Peixe(210, 560),
+    Peixe(210, 510),
+    Peixe(210, 460),
+    Peixe(210, 410),
 
-    # Peixe(60, 210),
-    # Peixe(60, 160),
-    # Peixe(60, 110),        
-    # Peixe(60, 60),
-    # Peixe(110, 60),
-    # Peixe(160, 60),
-    # Peixe(210, 60),
-    # Peixe(260, 60),
-    # Peixe(310, 60),
-    # Peixe(360, 60),
+    Peixe(60, 210),
+    Peixe(60, 160),
+    Peixe(60, 110),        
+    Peixe(60, 60),
+    Peixe(110, 60),
+    Peixe(160, 60),
+    Peixe(210, 60),
+    Peixe(260, 60),
+    Peixe(310, 60),
+    Peixe(360, 60),
 
-    # Peixe(360, 110),
-    # Peixe(310, 110),
-    # Peixe(260, 110),
-    # Peixe(260, 160),
-    # Peixe(260, 210),
-    # Peixe(260, 260),
+    Peixe(360, 110),
+    Peixe(310, 110),
+    Peixe(260, 110),
+    Peixe(260, 160),
+    Peixe(260, 210),
+    Peixe(260, 260),
 
-    # Peixe(310, 160),
-    # Peixe(310, 210),
-    # Peixe(310, 260),
-    # Peixe(310, 310),
-    # Peixe(310, 360),
-    # Peixe(310, 410),
-    # Peixe(310, 460),
-    # Peixe(310, 510),
-    # Peixe(310, 560),
+    Peixe(310, 160),
+    Peixe(310, 210),
+    Peixe(310, 260),
+    Peixe(310, 310),
+    Peixe(310, 360),
+    Peixe(310, 410),
+    Peixe(310, 460),
+    Peixe(310, 510),
+    Peixe(310, 560),
 
-    # Peixe(360, 210),
-    # Peixe(360, 260),
-    # Peixe(360, 310),
-    # Peixe(360, 360),
-    # Peixe(360, 410),
-    # Peixe(360, 460),
-    # Peixe(360, 510),
-    # Peixe(360, 560),
+    Peixe(360, 210),
+    Peixe(360, 260),
+    Peixe(360, 310),
+    Peixe(360, 360),
+    Peixe(360, 410),
+    Peixe(360, 460),
+    Peixe(360, 510),
+    Peixe(360, 560),
 
-    # Peixe(410, 460),
-    # Peixe(410, 560),
-    # Peixe(460, 460),
-    # Peixe(460, 560),
-    # Peixe(510, 460),
-    # Peixe(510, 510),
-    # Peixe(510, 560),
+    Peixe(410, 460),
+    Peixe(410, 560),
+    Peixe(460, 460),
+    Peixe(460, 560),
+    Peixe(510, 460),
+    Peixe(510, 510),
+    Peixe(510, 560),
 
-    # Peixe(510, 610),
-    # Peixe(510, 660),
-    # Peixe(510, 710),
-    # Peixe(560, 710),
-    # Peixe(610, 710),
+    Peixe(510, 610),
+    Peixe(510, 660),
+    Peixe(510, 710),
+    Peixe(560, 710),
+    Peixe(610, 710),
 
-    # Peixe(610, 660),
-    # Peixe(610, 610),
-    # Peixe(610, 560),
-    # Peixe(610, 510),
-    # Peixe(610, 460),
-    # Peixe(610, 410),
-    # Peixe(610, 360),
-    # Peixe(610, 310),
-    # Peixe(610, 260),
-    # Peixe(610, 210),
+    Peixe(610, 660),
+    Peixe(610, 610),
+    Peixe(610, 560),
+    Peixe(610, 510),
+    Peixe(610, 460),
+    Peixe(610, 410),
+    Peixe(610, 360),
+    Peixe(610, 310),
+    Peixe(610, 260),
+    Peixe(610, 210),
 
-    # Peixe(660, 660),
-    # Peixe(660, 610),
-    # Peixe(660, 560),
-    # Peixe(660, 510),
-    # Peixe(660, 460),
-    # Peixe(660, 410),
-    # Peixe(660, 360),
-    # Peixe(660, 310),
-    # Peixe(660, 260),
-    # Peixe(660, 210),
+    Peixe(660, 660),
+    Peixe(660, 610),
+    Peixe(660, 560),
+    Peixe(660, 510),
+    Peixe(660, 460),
+    Peixe(660, 410),
+    Peixe(660, 360),
+    Peixe(660, 310),
+    Peixe(660, 260),
+    Peixe(660, 210),
 
-    # Peixe(560, 360),
-    # Peixe(560, 210),
+    Peixe(560, 360),
+    Peixe(560, 210),
 
-    # Peixe(510, 360),
-    # Peixe(510, 210),
+    Peixe(510, 360),
+    Peixe(510, 210),
 
-    # Peixe(460, 360),
-    # Peixe(460, 310),
-    # Peixe(460, 260),
-    # Peixe(460, 210),
+    Peixe(460, 360),
+    Peixe(460, 310),
+    Peixe(460, 260),
+    Peixe(460, 210),
 
-    # Peixe(710, 210),
-    # Peixe(710, 160),
-    # Peixe(710, 110),
+    Peixe(710, 210),
+    Peixe(710, 160),
+    Peixe(710, 110),
     
     ]
     # ----- Grupos de sprites
@@ -196,6 +195,7 @@ def fase1(screen, WIDTH, HEIGHT, player):
 
 def fase2(screen, WIDTH, HEIGHT, player):
     # ----- Define posição inicial do player
+    player.nivel = 1 # Gato médio
     player.rect.x = 50
     player.rect.y = 50  
     
@@ -218,7 +218,7 @@ def fase2(screen, WIDTH, HEIGHT, player):
         Peixe(60, 410),
         Peixe(200, 410),
         Peixe(300, 410),
-        Peixe(500, 500),
+        # Peixe(500, 500),
     ]
 
     state = FASE2
@@ -249,9 +249,15 @@ def fase2(screen, WIDTH, HEIGHT, player):
         if check_collision(player.rect.move(player.speedx, player.speedy), barreiras):
             player.speedx = 0
             player.speedy = 0
+        if pygame.sprite.spritecollideany(player, grupo_inimigos):
+            return GAMEOVER
+        if pygame.sprite.spritecollideany(player, grupo_tiros_inimigos):
+            return GAMEOVER
 
         # Atualiza inimigos (corrigido)
         grupo_inimigos.update(grupo_tiros_inimigos)
+        grupo_tiros_inimigos.update(barreiras)
+        grupo_tiros_inimigos.draw(screen)
 
         # Desenha peixes restantes
         peixes = [peixe for peixe in peixes if not peixe.foi_comido(player.rect)]
@@ -274,6 +280,7 @@ def fase2(screen, WIDTH, HEIGHT, player):
 
 def fase3(screen, WIDTH, HEIGHT, player):
     # ----- Define posição inicial do player
+    player.nivel = 2  # Gato gordo
     player.rect.x = 50
     player.rect.y = 700  
     
@@ -325,7 +332,15 @@ def fase3(screen, WIDTH, HEIGHT, player):
             player.speedx = 0
             player.speedy = 0
         # Atualiza inimigos (corrigido)
+        if pygame.sprite.spritecollideany(player, grupo_inimigos):
+            return GAMEOVER
+        if pygame.sprite.spritecollideany(player, grupo_tiros_inimigos):
+            return GAMEOVER
+
+        # Atualiza inimigos (corrigido)
         grupo_inimigos.update(grupo_tiros_inimigos)
+        grupo_tiros_inimigos.update()
+        grupo_tiros_inimigos.draw(screen)
 
         # Desenha peixes restantes
         peixes = [peixe for peixe in peixes if not peixe.foi_comido(player.rect)]
