@@ -299,24 +299,29 @@ def fase3(screen, WIDTH, HEIGHT, player, tempo):
     grupo_tiros_inimigos = pygame.sprite.Group()
 
     # ----- Cria inimigos
-    inimigo1 = Inimigo(170, 725, 'cima')
-    inimigo2 = Inimigo(600, 220, 'direita')
-    inimigo3 = Inimigo(235, 370, 'esquerda')
-    inimigo4 = Inimigo(600, 600, 'baixo')
-    inimigo5 = Inimigo(600, 700, 'esquerda')
-    inimigo6 = Inimigo(380, 425, 'cima')
-    inimigo7 = Inimigo(420, 425, 'baixo')
-    inimigo8 = Inimigo(500, 100, 'baixo')
-    grupo_inimigos.add(inimigo1, inimigo2, inimigo3, inimigo4, inimigo5, inimigo6, inimigo7, inimigo8)
+    inimigo1 = Inimigo(170, 725, 'cima')#inicio
+    inimigo2 = Inimigo(675, 220, 'baixo')#meio superior direita
+    inimigo3 = Inimigo(625, 180, 'esquerda')#meio superior direita
+    inimigo4 = Inimigo(675, 180, 'direita')#meio superior direita
+    inimigo5 = Inimigo(625, 220, 'baixo')#meio superior direita
+    inimigo6 = Inimigo(675, 140, 'direita')#meio superior direita
+    inimigo7 = Inimigo(625, 140, 'esquerda')#meio superior direita
+    inimigo8 = Inimigo(380, 425, 'cima')#meio
+    inimigo9 = Inimigo(420, 425, 'baixo')#meio
+    inimigo10 = Inimigo(520, 75, 'direita')
+    inimigo11 = Inimigo(375, 125, 'baixo')
+    inimigo12 = Inimigo(225, 225, 'cima')
+    inimigo13 = Inimigo(120, 375, 'direita')
+    grupo_inimigos.add(inimigo1, inimigo2, inimigo3, inimigo4, inimigo5, inimigo6, inimigo7, inimigo8, inimigo9, inimigo10,inimigo11, inimigo12, inimigo13)
 
     # ----- Lista de peixes
     peixes = [
-    Peixe(160, 360),  # área central
-    Peixe(110, 690),  # canto inferior esquerdo, difícil de sair depois
-    Peixe(210, 410),  # caminho central com gato próximo
-    Peixe(380, 300),  # área cercada, precisa fazer curva
-    Peixe(580, 690),  # canto inferior direito com caminho estreito
-    Peixe(690, 110),  # canto superior direito, exige curva longa
+    #Peixe(210, 360),  # área central
+    Peixe(250, 710),  # canto inferior esquerdo, difícil de sair depois
+    # Peixe(210, 410),  # caminho central com gato próximo
+    # Peixe(380, 300),  # área cercada, precisa fazer curva
+    # Peixe(580, 690),  # canto inferior direito com caminho estreito
+    # Peixe(690, 110),  # canto superior direito, exige curva longa
     ]
 
     state = FASE3
@@ -325,6 +330,7 @@ def fase3(screen, WIDTH, HEIGHT, player, tempo):
     while state != QUIT and state != GAMEOVER:
         screen.fill((0, 0, 0))  # Limpa a tela
         barreiras = mapa_level3(screen)   # Desenha o labirinto
+       
         # Eventos
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
