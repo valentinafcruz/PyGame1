@@ -1,7 +1,7 @@
 # Arquivo para definir as classes do jogo
 import pygame
 from os import path
-from fase1 import *
+from fase1_mapa import *
 # ----- Inicializa assets
 peixe_img = pygame.image.load("assets/peixe_sem_fundo.png").convert_alpha()
 peixe_img = pygame.transform.scale(peixe_img, (30, 30))
