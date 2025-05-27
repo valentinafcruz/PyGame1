@@ -140,6 +140,7 @@ def fase1(screen, WIDTH, HEIGHT, player, tempo):
     Peixe(710, 210),
     Peixe(710, 160),
     Peixe(710, 110),
+    Peixe(710, 60),
     
     ]
     
@@ -212,20 +213,122 @@ def fase2(screen, WIDTH, HEIGHT, player, tempo):
     inimigo7 = Inimigo(540, 525, 'esquerda') 
     inimigo5 = Inimigo(369, 325, 'direita')
     inimigo6 = Inimigo(580, 175, 'esquerda')
-    inimigo8 = Inimigo(520, 425, 'direita')
-    grupo_inimigos.add(inimigo1, inimigo2, inimigo3, inimigo4, inimigo5, inimigo6, inimigo7, inimigo8)
+    # inimigo8 = Inimigo(520, 425, 'direita')
+    grupo_inimigos.add(inimigo1, inimigo2, inimigo3, inimigo4, inimigo5, inimigo6, inimigo7)
 
     # ----- Lista de peixes
-    peixes = peixes = [
-        Peixe(50, 50), 
-        Peixe(100, 410),        
+    peixes = peixes = [ 
+        Peixe(110, 410),        
         Peixe(60, 410),
-        Peixe(200, 410),
-        Peixe(300, 410),
-    #     # Peixe(500, 500),
-          Peixe(310, 150),  # curva de retorno
-    #     # Peixe(470, 360),  # canto isolado no centro
-    #     # Peixe(600, 430),  # área com dois gatos por perto
+        Peixe(160, 410),
+        Peixe(210, 410),
+        Peixe(210, 360),
+        Peixe(210, 310),
+        Peixe(210, 260),
+
+        Peixe(110, 260),        
+        Peixe(60, 260),
+        Peixe(160, 260),
+
+        Peixe(60, 210),
+        Peixe(60, 160),
+        Peixe(110, 160),
+        Peixe(160, 160),
+        Peixe(210, 160),
+
+        Peixe(210, 110),        
+        Peixe(210, 60),
+        Peixe(160, 60),
+        Peixe(110, 60),        
+        
+        Peixe(60, 460),
+        Peixe(60, 510),
+        Peixe(60, 560),
+        Peixe(110, 560),
+        Peixe(160, 560),
+        Peixe(210, 610),
+        Peixe(210, 560),
+        Peixe(210, 660),
+        Peixe(210, 710),
+        Peixe(60, 710),
+        Peixe(110, 710),
+        Peixe(160, 710),
+        Peixe(260, 710),
+
+        Peixe(260, 660),
+        Peixe(310, 660), 
+        Peixe(360, 660),
+        Peixe(410, 660), 
+        Peixe(460, 660),
+        Peixe(510, 660), 
+        Peixe(560, 660),
+        Peixe(510, 660),
+        Peixe(560, 660),
+
+        Peixe(610, 660),
+        Peixe(610, 610), 
+        Peixe(610, 560),
+        Peixe(560, 560), 
+        Peixe(510, 560),
+        Peixe(460, 560), 
+        Peixe(410, 560),
+        Peixe(360, 560),
+        Peixe(310, 560),
+
+        Peixe(310, 510),
+        Peixe(310, 460), 
+        Peixe(310, 410),
+        Peixe(310, 360), 
+        Peixe(360, 360),
+        Peixe(410, 360), 
+        Peixe(410, 410),
+        Peixe(360, 410),
+        Peixe(410, 310),
+
+        Peixe(460, 310),
+        Peixe(510, 310), 
+        Peixe(560, 310),
+        Peixe(610, 310), 
+        Peixe(610, 360),
+        Peixe(610, 410), 
+        Peixe(510, 410),
+        Peixe(510, 360),
+        Peixe(560, 410),
+        
+
+        Peixe(610, 260),
+        Peixe(560, 210), 
+        Peixe(510, 210),
+        Peixe(610, 210), 
+        Peixe(460, 210),
+        Peixe(410, 210), 
+        Peixe(360, 210),
+        Peixe(310, 210),
+        Peixe(310, 160),
+        Peixe(310, 110),
+        Peixe(310, 60),
+
+        Peixe(360, 60), 
+        Peixe(410, 60), 
+        Peixe(460, 60),
+        Peixe(510, 60), 
+        Peixe(560, 60), 
+        Peixe(610, 60), 
+        Peixe(660, 60),
+        Peixe(710, 60), 
+        Peixe(710, 110),
+        Peixe(710, 160),
+        Peixe(710, 210),
+        Peixe(710, 260),
+        Peixe(710, 310),
+        Peixe(710, 360),
+        Peixe(710, 410),
+        Peixe(710, 460),
+        Peixe(710, 510),
+        Peixe(710, 560),
+        Peixe(710, 610),
+        Peixe(710, 660),
+        
      ]
 
 
@@ -310,19 +413,137 @@ def fase3(screen, WIDTH, HEIGHT, player, tempo):
     inimigo9 = Inimigo(420, 425, 'baixo')#meio
     inimigo10 = Inimigo(520, 75, 'direita')
     inimigo11 = Inimigo(375, 125, 'baixo')
-    inimigo12 = Inimigo(225, 225, 'cima')
+    # inimigo12 = Inimigo(225, 225, 'cima')
     inimigo13 = Inimigo(120, 375, 'direita')
-    grupo_inimigos.add(inimigo1, inimigo2, inimigo3, inimigo4, inimigo5, inimigo6, inimigo7, inimigo8, inimigo9, inimigo10,inimigo11, inimigo12, inimigo13)
+    grupo_inimigos.add(inimigo1, inimigo2, inimigo3, inimigo4, inimigo5, inimigo6, inimigo7, inimigo8, inimigo9, inimigo10,inimigo11, inimigo13)
 
     # ----- Lista de peixes
     peixes = [
-    Peixe(210, 360),  # área central
-    Peixe(250, 710),  # canto inferior esquerdo, difícil de sair depois
-    Peixe(210, 410),  # caminho central com gato próximo
-    # Peixe(380, 300),  # área cercada, precisa fazer curva
-    Peixe(580, 690),  # canto inferior direito com caminho estreito
-    Peixe(690, 110),  # canto superior direito, exige curva longa
+    
+    Peixe(60, 660), 
+    Peixe(60, 610), 
+    Peixe(60, 560),  
+    Peixe(110, 560), 
+    Peixe(160, 560), 
+    Peixe(210, 560), 
+    Peixe(210, 610), 
+    Peixe(210, 660), 
+    Peixe(210, 710),
+
+    Peixe(260, 710), 
+    Peixe(310, 710), 
+    Peixe(310, 660), 
+    Peixe(310, 610), 
+    Peixe(310, 560),
+
+    Peixe(360, 560), 
+    Peixe(410, 560), 
+    Peixe(460, 560),  
+    Peixe(510, 560), 
+    Peixe(510, 510), 
+    Peixe(510, 460), 
+    Peixe(460, 460), 
+    Peixe(410, 460), 
+    Peixe(360, 460),
+    Peixe(310, 460), 
+    Peixe(310, 410), 
+    Peixe(310, 360), 
+
+    Peixe(360, 360), 
+    Peixe(410, 360), 
+    Peixe(460, 360),  
+    Peixe(460, 410), 
+    Peixe(460, 510), 
+    Peixe(460, 610), 
+    Peixe(460, 660), 
+    Peixe(460, 710), 
+    Peixe(510, 710),
+    Peixe(560, 710), 
+    Peixe(610, 710), 
+    Peixe(660, 710), 
+    Peixe(710, 710),
+
+    Peixe(710, 660), 
+    Peixe(710, 610), 
+    Peixe(710, 560), 
+    Peixe(660, 510),
+    Peixe(710, 660), 
+    Peixe(660, 460), 
+    Peixe(710, 460), 
+    Peixe(660, 560),
+
+    Peixe(710, 410), 
+    Peixe(710, 360), 
+    Peixe(660, 360), 
+    Peixe(610, 360),
+    Peixe(560, 360), 
+    Peixe(560, 310), 
+    Peixe(560, 260), 
+    Peixe(560, 210),
+    Peixe(560, 160), 
+    Peixe(560, 110), 
+    Peixe(560, 60), 
+    Peixe(610, 60),
+    Peixe(660, 60), 
+    Peixe(710, 60), 
+    Peixe(710, 110), 
+    Peixe(710, 210),
+    Peixe(710, 160), 
+    Peixe(710, 260), 
+    Peixe(660, 260), 
+    Peixe(610, 260),
+
+    Peixe(510, 260), 
+    Peixe(460, 260), 
+    Peixe(410, 260), 
+    Peixe(360, 260),
+    Peixe(310, 260), 
+    Peixe(310, 210), 
+    Peixe(310, 160), 
+    Peixe(310, 110),
+    Peixe(310, 60),  
+    Peixe(360, 60), 
+    Peixe(410, 60),
+    Peixe(410, 110), 
+    Peixe(410, 160), 
+    Peixe(360, 160), 
+    Peixe(260, 160),
+    Peixe(210, 160), 
+    Peixe(160, 160), 
+    Peixe(110, 160), 
+    Peixe(60, 160),
+
+    Peixe(60, 60), 
+    Peixe(60, 110), 
+    Peixe(110, 60), 
+    Peixe(160, 60),
+    Peixe(210, 60), 
+    Peixe(210, 110), 
+    Peixe(210, 210), 
+    Peixe(310, 110),
+    Peixe(310, 60),  
+    Peixe(310, 60), 
+    Peixe(310, 160),
+    Peixe(60, 210), 
+    Peixe(110, 210), 
+    Peixe(160, 210), 
+    Peixe(60, 260),
+    Peixe(60, 310), 
+    Peixe(110, 310), 
+    Peixe(160, 310), 
+    Peixe(210, 310),
+
+    Peixe(210, 360), 
+    Peixe(210, 410), 
+    Peixe(210, 460),
+    Peixe(160, 460), 
+    Peixe(110, 460), 
+    Peixe(60, 460),
+    Peixe(60, 410),
+
     ]
+    
+    
 
     state = FASE3
 
