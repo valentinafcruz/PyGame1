@@ -1,6 +1,5 @@
 import pygame
 import sys
-
 # Inicializa o pygame
 pygame.init()
 
@@ -12,8 +11,6 @@ pygame.display.set_caption("Mapa Level2 - Visualização")
 # Cor das paredes
 BLACK = (0, 0, 0)
 YELLOW = (255,215,0)
-
-BLACK = (255, 255, 255)
 WHITE  = (0, 0, 0)
 
 
@@ -37,12 +34,6 @@ def draw_wall1(x, y, width, height):
     pygame.draw.rect(screen, YELLOW, (x, y, width, height))
     barreiras.append(pygame.Rect(x, y, width, height))
 
-# Função que desenha o labirinto
-def mapa_level2():
-    barreiras.clear()
-    
-    #Paredes - Labirinto 2
-    #cantos
     draw_wall1(0,0,50,800)
     draw_wall1(0,0,800,50)
     draw_wall1(0,750,800,50)

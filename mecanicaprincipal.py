@@ -52,7 +52,7 @@ while state != QUIT:
         som_nivel.play()
         pygame.time.delay(1000)
         pygame.mixer.music.unpause()
-        window.fill((0,0,0))
+        # screen.fill((0,0,0))
         state = fase2(screen, WIDTH, HEIGHT, player)
 
     if state == FASE3:
@@ -62,7 +62,7 @@ while state != QUIT:
         pygame.mixer.music.unpause()
         window.fill((0,0,0))
         state = fase3(screen, WIDTH, HEIGHT, player)
-        
+
     if state == WIN:
         pygame.mixer.music.stop()
         state = win_screen(screen, WIDTH, HEIGHT)
