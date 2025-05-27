@@ -114,7 +114,7 @@ class TiroInimigo(pygame.sprite.Sprite):
         self.image = pygame.image.load('assets/Osso Tiro.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (30, 30))
         self.rect = self.image.get_rect(center=(x, y))
-        self.velocidade = 3
+        self.velocidade = 2
         self.direcao = direcao # Direção inicial
 
     def update(self, paredes):

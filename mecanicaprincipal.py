@@ -65,7 +65,7 @@ while state != QUIT:
         pygame.time.delay(1000)
         pygame.mixer.music.unpause()
 
-        state = fase2(screen, WIDTH, HEIGHT, player, crom_tempo)
+        state = fase2(screen, WIDTH, HEIGHT, player)
 
     if state == FASE3:
         pygame.mixer.music.pause()
