@@ -46,26 +46,28 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # Loop principal
 while state != QUIT:
+    # ===== CRONÔMETRO =====
+    crom_tempo = pygame.time.get_ticks() // 1000  # transforma em segundos
+    min = crom_tempo // 60
+    seg = crom_tempo % 60
+    tempo_formt = f"{min:02d}:{seg:02d}"
+    # ======================
+    
     if state == INIT:
         state = init_screen(screen, WIDTH, HEIGHT)
 
     if state == FASE1:
-        crom_tempo = pygame.time.get_ticks()
-        min = crom_tempo // 60
-        seg = crom_tempo % 60
-        tempo_formt = f"{min:02d}:{seg:02d}"
-        font = pygame.font.SysFont(None, 36)
-        tempo_tela = font.render(tempo_formt, True, (0, 0, 0))  # Cor branca
-        screen.blit(tempo_tela, (0, 0))  # Posição no canto superior esquerdo
-        state = fase1(screen, WIDTH, HEIGHT, player)
+        state = fase1(screen, WIDTH, HEIGHT, player, tempo_formt)
 
     if state == FASE2:
         pygame.mixer.music.pause()
         som_nivel.play()
         pygame.time.delay(1000)
         pygame.mixer.music.unpause()
-
-        state = fase2(screen, WIDTH, HEIGHT, player, crom_tempo)
+    
+        
+        # Atualiza o tempo
+        state = fase2(screen, WIDTH, HEIGHT, player, tempo_formt)
 
     if state == FASE3:
         pygame.mixer.music.pause()
@@ -73,10 +75,11 @@ while state != QUIT:
         pygame.time.delay(1000)
         pygame.mixer.music.unpause()
 
-        state = fase3(screen, WIDTH, HEIGHT, player)
+        
+        state = fase3(screen, WIDTH, HEIGHT, player, tempo_formt)
     if state == WIN:
         pygame.mixer.music.stop()
-        state = win_screen(screen, WIDTH, HEIGHT)
+        state = win_screen(screen, WIDTH, HEIGHT, tempo_formt)
         pygame.mixer.music.play(-1)
     if state == GAMEOVER:
         pygame.mixer.music.stop()
