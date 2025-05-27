@@ -73,6 +73,8 @@ while state != QUIT:
         pygame.mixer.music.play(-1)
     if state == GAMEOVER:
         pygame.mixer.music.stop()
+        som_gameover.play()
+        pygame.time.delay(1000)
         state = game_over_screen(screen, WIDTH, HEIGHT)
         if state == INIT:
             pygame.mixer.music.play(-1) 
