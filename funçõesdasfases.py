@@ -31,115 +31,115 @@ def fase1(screen, WIDTH, HEIGHT, player, tempo):
     # Lista de peixes1
     peixes1 = [
     Peixe(160, 360),
-    # Peixe(110, 360),        
-    # Peixe(60, 410),
-    # Peixe(210, 360),
-    # Peixe(60, 360),        
-    # Peixe(60, 310),
-    # Peixe(60, 260),
-    # Peixe(60, 310),
-    # Peixe(60, 610),        
-    # Peixe(60, 660),
-    # Peixe(110, 610),
-    # Peixe(110, 710),
-    # Peixe(160, 610),
+    Peixe(110, 360),        
+    Peixe(60, 410),
+    Peixe(210, 360),
+    Peixe(60, 360),        
+    Peixe(60, 310),
+    Peixe(60, 260),
+    Peixe(60, 310),
+    Peixe(60, 610),        
+    Peixe(60, 660),
+    Peixe(110, 610),
+    Peixe(110, 710),
+    Peixe(160, 610),
 
-    # Peixe(160, 710),
-    # Peixe(210, 710),
-    # Peixe(210, 660),        
-    # Peixe(210, 610),
-    # Peixe(210, 560),
-    # Peixe(210, 510),
-    # Peixe(210, 460),
-    # Peixe(210, 410),
+    Peixe(160, 710),
+    Peixe(210, 710),
+    Peixe(210, 660),        
+    Peixe(210, 610),
+    Peixe(210, 560),
+    Peixe(210, 510),
+    Peixe(210, 460),
+    Peixe(210, 410),
 
-    # Peixe(60, 210),
-    # Peixe(60, 160),
-    # Peixe(60, 110),        
-    # Peixe(60, 60),
-    # Peixe(110, 60),
-    # Peixe(160, 60),
-    # Peixe(210, 60),
-    # Peixe(260, 60),
-    # Peixe(310, 60),
-    # Peixe(360, 60),
+    Peixe(60, 210),
+    Peixe(60, 160),
+    Peixe(60, 110),        
+    Peixe(60, 60),
+    Peixe(110, 60),
+    Peixe(160, 60),
+    Peixe(210, 60),
+    Peixe(260, 60),
+    Peixe(310, 60),
+    Peixe(360, 60),
 
-    # Peixe(360, 110),
-    # Peixe(310, 110),
-    # Peixe(260, 110),
-    # Peixe(260, 160),
-    # Peixe(260, 210),
-    # Peixe(260, 260),
+    Peixe(360, 110),
+    Peixe(310, 110),
+    Peixe(260, 110),
+    Peixe(260, 160),
+    Peixe(260, 210),
+    Peixe(260, 260),
 
-    # Peixe(310, 160),
-    # Peixe(310, 210),
-    # Peixe(310, 260),
-    # Peixe(310, 310),
-    # Peixe(310, 360),
-    # Peixe(310, 410),
-    # Peixe(310, 460),
-    # Peixe(310, 510),
-    # Peixe(310, 560),
+    Peixe(310, 160),
+    Peixe(310, 210),
+    Peixe(310, 260),
+    Peixe(310, 310),
+    Peixe(310, 360),
+    Peixe(310, 410),
+    Peixe(310, 460),
+    Peixe(310, 510),
+    Peixe(310, 560),
 
-    # Peixe(360, 210),
-    # Peixe(360, 260),
-    # Peixe(360, 310),
-    # Peixe(360, 360),
-    # Peixe(360, 410),
-    # Peixe(360, 460),
-    # Peixe(360, 510),
-    # Peixe(360, 560),
+    Peixe(360, 210),
+    Peixe(360, 260),
+    Peixe(360, 310),
+    Peixe(360, 360),
+    Peixe(360, 410),
+    Peixe(360, 460),
+    Peixe(360, 510),
+    Peixe(360, 560),
 
-    # Peixe(410, 460),
-    # Peixe(410, 560),
-    # Peixe(460, 460),
-    # Peixe(460, 560),
-    # Peixe(510, 460),
-    # Peixe(510, 510),
-    # Peixe(510, 560),
+    Peixe(410, 460),
+    Peixe(410, 560),
+    Peixe(460, 460),
+    Peixe(460, 560),
+    Peixe(510, 460),
+    Peixe(510, 510),
+    Peixe(510, 560),
 
-    # Peixe(510, 610),
-    # Peixe(510, 660),
-    # Peixe(510, 710),
-    # Peixe(560, 710),
-    # Peixe(610, 710),
+    Peixe(510, 610),
+    Peixe(510, 660),
+    Peixe(510, 710),
+    Peixe(560, 710),
+    Peixe(610, 710),
 
-    # Peixe(610, 660),
-    # Peixe(610, 610),
-    # Peixe(610, 560),
-    # Peixe(610, 510),
-    # Peixe(610, 460),
-    # Peixe(610, 410),
-    # Peixe(610, 360),
-    # Peixe(610, 310),
-    # Peixe(610, 260),
-    # Peixe(610, 210),
+    Peixe(610, 660),
+    Peixe(610, 610),
+    Peixe(610, 560),
+    Peixe(610, 510),
+    Peixe(610, 460),
+    Peixe(610, 410),
+    Peixe(610, 360),
+    Peixe(610, 310),
+    Peixe(610, 260),
+    Peixe(610, 210),
 
-    # Peixe(660, 660),
-    # Peixe(660, 610),
-    # Peixe(660, 560),
-    # Peixe(660, 510),
-    # Peixe(660, 460),
-    # Peixe(660, 410),
-    # Peixe(660, 360),
-    # Peixe(660, 310),
-    # Peixe(660, 260),
-    # Peixe(660, 210),
+    Peixe(660, 660),
+    Peixe(660, 610),
+    Peixe(660, 560),
+    Peixe(660, 510),
+    Peixe(660, 460),
+    Peixe(660, 410),
+    Peixe(660, 360),
+    Peixe(660, 310),
+    Peixe(660, 260),
+    Peixe(660, 210),
 
-    # Peixe(560, 360),
-    # Peixe(560, 210),
+    Peixe(560, 360),
+    Peixe(560, 210),
 
-    # Peixe(510, 360),
-    # Peixe(510, 210),
+    Peixe(510, 360),
+    Peixe(510, 210),
 
-    # Peixe(460, 360),
-    # Peixe(460, 310),
-    # Peixe(460, 260),
-    # Peixe(460, 210),
+    Peixe(460, 360),
+    Peixe(460, 310),
+    Peixe(460, 260),
+    Peixe(460, 210),
 
-    # Peixe(710, 210),
-    # Peixe(710, 160),
-    # Peixe(710, 110),
+    Peixe(710, 210),
+    Peixe(710, 160),
+    Peixe(710, 110),
     
     ]
     
@@ -217,15 +217,15 @@ def fase2(screen, WIDTH, HEIGHT, player, tempo):
 
     # ----- Lista de peixes
     peixes = peixes = [
-    #     Peixe(50, 50), 
+       Peixe(50, 50), 
         Peixe(100, 410),        
-    #     Peixe(60, 410),
-    #     Peixe(200, 410),
-    #     Peixe(300, 410),
-    # #     # Peixe(500, 500),
-    #       Peixe(310, 150),  # curva de retorno
-        # Peixe(470, 360),  # canto isolado no centro
-        # Peixe(600, 430),  # área com dois gatos por perto
+        Peixe(60, 410),
+         Peixe(200, 410),
+         Peixe(300, 410),
+         Peixe(500, 500),
+           Peixe(310, 150),  # curva de retorno
+        Peixe(470, 360),  # canto isolado no centro
+        Peixe(600, 430),  # área com dois gatos por perto
      ]
 
 
@@ -316,12 +316,12 @@ def fase3(screen, WIDTH, HEIGHT, player, tempo):
 
     # ----- Lista de peixes
     peixes = [
-    # # Peixe(210, 360),  # área central
+    Peixe(210, 360),  # área central
     Peixe(250, 710),  # canto inferior esquerdo, difícil de sair depois
-    # Peixe(210, 410),  # caminho central com gato próximo
-    # # Peixe(380, 300),  # área cercada, precisa fazer curva
-    # # Peixe(580, 690),  # canto inferior direito com caminho estreito
-    # # Peixe(690, 110),  # canto superior direito, exige curva longa
+    Peixe(210, 410),  # caminho central com gato próximo
+    Peixe(380, 300),  # área cercada, precisa fazer curva
+    Peixe(580, 690),  # canto inferior direito com caminho estreito
+    Peixe(690, 110),  # canto superior direito, exige curva longa
     ]
 
     state = FASE3
