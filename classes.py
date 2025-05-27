@@ -52,7 +52,6 @@ class player(pygame.sprite.Sprite):
         else:
             self.speedx = 0
             self.speedy = 0
-        print(self.speedx, self.speedy)
 
     def draw(self, screen):
         self.image = self.imagens[self.nivel]
