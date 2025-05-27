@@ -137,9 +137,9 @@ def fase1(screen, WIDTH, HEIGHT, player, tempo):
     Peixe(460, 260),
     Peixe(460, 210),
 
-    Peixe(710, 210),
-    Peixe(710, 160),
-    Peixe(710, 110),
+    # Peixe(710, 210),
+    # Peixe(710, 160),
+    # Peixe(710, 110),
     
     ]
     
@@ -212,20 +212,20 @@ def fase2(screen, WIDTH, HEIGHT, player, tempo):
     inimigo7 = Inimigo(540, 525, 'esquerda') 
     inimigo5 = Inimigo(369, 325, 'direita')
     inimigo6 = Inimigo(580, 175, 'esquerda')
-    inimigo8 = Inimigo(520, 425, 'direita')
-    grupo_inimigos.add(inimigo1, inimigo2, inimigo3, inimigo4, inimigo5, inimigo6, inimigo7, inimigo8)
+    # inimigo8 = Inimigo(520, 425, 'direita')
+    grupo_inimigos.add(inimigo1, inimigo2, inimigo3, inimigo4, inimigo5, inimigo6, inimigo7)
 
     # ----- Lista de peixes
     peixes = peixes = [
-       Peixe(50, 50), 
+    #     Peixe(50, 50), 
         Peixe(100, 410),        
-        Peixe(60, 410),
-         Peixe(200, 410),
-         Peixe(300, 410),
-         Peixe(500, 500),
-           Peixe(310, 150),  # curva de retorno
-        Peixe(470, 360),  # canto isolado no centro
-        Peixe(600, 430),  # área com dois gatos por perto
+    #     Peixe(60, 410),
+    #     Peixe(200, 410),
+    #     Peixe(300, 410),
+    # #     # Peixe(500, 500),
+    #       Peixe(310, 150),  # curva de retorno
+        # Peixe(470, 360),  # canto isolado no centro
+        # Peixe(600, 430),  # área com dois gatos por perto
      ]
 
 
@@ -310,18 +310,18 @@ def fase3(screen, WIDTH, HEIGHT, player, tempo):
     inimigo9 = Inimigo(420, 425, 'baixo')#meio
     inimigo10 = Inimigo(520, 75, 'direita')
     inimigo11 = Inimigo(375, 125, 'baixo')
-    inimigo12 = Inimigo(225, 225, 'cima')
+    # inimigo12 = Inimigo(225, 225, 'cima')
     inimigo13 = Inimigo(120, 375, 'direita')
-    grupo_inimigos.add(inimigo1, inimigo2, inimigo3, inimigo4, inimigo5, inimigo6, inimigo7, inimigo8, inimigo9, inimigo10,inimigo11, inimigo12, inimigo13)
+    grupo_inimigos.add(inimigo1, inimigo2, inimigo3, inimigo4, inimigo5, inimigo6, inimigo7, inimigo8, inimigo9, inimigo10,inimigo11, inimigo13)
 
     # ----- Lista de peixes
     peixes = [
-    Peixe(210, 360),  # área central
+    # # Peixe(210, 360),  # área central
     Peixe(250, 710),  # canto inferior esquerdo, difícil de sair depois
-    Peixe(210, 410),  # caminho central com gato próximo
-    Peixe(380, 300),  # área cercada, precisa fazer curva
-    Peixe(580, 690),  # canto inferior direito com caminho estreito
-    Peixe(690, 110),  # canto superior direito, exige curva longa
+    # Peixe(210, 410),  # caminho central com gato próximo
+    # # Peixe(380, 300),  # área cercada, precisa fazer curva
+    # # Peixe(580, 690),  # canto inferior direito com caminho estreito
+    # # Peixe(690, 110),  # canto superior direito, exige curva longa
     ]
 
     state = FASE3
