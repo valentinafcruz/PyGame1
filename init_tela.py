@@ -1,5 +1,5 @@
 import pygame 
-from fase1_mapa import *
+from mapas_das_fases import *
 from os import path
 
 INIT = 0

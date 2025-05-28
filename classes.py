@@ -1,11 +1,14 @@
 # Arquivo para definir as classes do jogo
+# Importando bibliotecas necessárias
 import pygame
 from os import path
-from fase1_mapa import *
-# ----- Inicializa assets
+from mapas_das_fases import *
+
+
+# ----- Inicializa assets do peixe
 peixe_img = pygame.image.load("assets/peixe_sem_fundo.png").convert_alpha()
 peixe_img = pygame.transform.scale(peixe_img, (30, 30))
-
+# ----- Inicializa assets do gato
 gato_imgs = [
     pygame.image.load("assets/gato_magro_sem_fundo.png"),
     pygame.image.load("assets/gato_medio_sem_fundo.png"),
@@ -17,23 +20,22 @@ gato_imgs = [pygame.transform.scale(img, (50, 50)) for img in gato_imgs]
 
 WIDTH = 800
 HEIGHT = 800
-# Classe do Player
+
+# ----- Classe do player (gato)
 
 class player(pygame.sprite.Sprite):
-    def __init__(self,imagens):
+    def __init__(self, imagens):
         super().__init__()
         self.imagens = imagens
-        self.nivel = 0
+        self.nivel = 0 # Nível inicial do gato
         self.image = self.imagens[self.nivel]
         self.rect = self.image.get_rect()
         self.speedx = 0
         self.speedy = 0
 
-    # def move(self):
-    #     nova_posicao = pygame.Rect(self.rect.x + self.speedx, self.rect.y + self.speedy, self.rect.width, self.rect.height)
     def move(self, barreiras):
         nova_posicao = pygame.Rect(self.rect.x + self.speedx, self.rect.y + self.speedy, self.rect.width, self.rect.height)
-        if not check_collision(nova_posicao,barreiras):
+        if not check_collision(nova_posicao, barreiras):
             if self.rect.right > WIDTH:
                 self.rect.right = WIDTH
                 self.speedx = 0
@@ -56,8 +58,7 @@ class player(pygame.sprite.Sprite):
     def draw(self, screen):
         self.image = self.imagens[self.nivel]
         screen.blit(self.image, self.rect.topleft)
-    # def draw(self,tela):
-    #     tela.blit(self.image, (self.rect.x, self.rect.y))
+    
     def evoluir(self):
         if self.nivel < len(self.imagens) - 1:
             self.nivel += 1
@@ -75,7 +76,7 @@ class Peixe:
     def foi_comido(self, gato_rect):
         return self.rect.colliderect(gato_rect)
 
-#Classe do inimigo e do tiro do inimigo
+# Classe do inimigo
 class Inimigo(pygame.sprite.Sprite):
     def __init__(self, x, y, direcao):
         super().__init__()
@@ -107,7 +108,7 @@ class Inimigo(pygame.sprite.Sprite):
             grupo_tiros.add(tiro)
             self.tempo_ultimo_tiro = agora
 
-
+# Classe do tiro do inimigo
 class TiroInimigo(pygame.sprite.Sprite):
     def __init__(self, x, y, direcao):
         super().__init__()
