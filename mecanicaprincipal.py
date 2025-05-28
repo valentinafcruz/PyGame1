@@ -45,20 +45,21 @@ clock.tick(FPS)
 # ----- Inicializa tela
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
+#Tempo inicial do cronômetro
+crom_tempo = None
 # Loop principal
 while state != QUIT:
     # ===== CRONÔMETRO =====
-    crom_tempo = pygame.time.get_ticks() // 1000  # transforma em segundos
-    min = crom_tempo // 60
-    seg = crom_tempo % 60
-    tempo_formt = f"{min:02d}:{seg:02d}"
+    
     # ======================
     
     if state == INIT:
         state = init_screen(screen, WIDTH, HEIGHT)
-
+        crom_tempo = None  # Reseta o cronômetro quando volta para a tela inicial
     if state == FASE1:
-        state = fase1(screen, WIDTH, HEIGHT, player, tempo_formt)
+        if crom_tempo == None:
+            crom_tempo = pygame.time.get_ticks() // 1000  # transforma em segundos        
+        state = fase1(screen, WIDTH, HEIGHT, player, crom_tempo)
 
     if state == FASE2:
         pygame.mixer.music.pause()
@@ -66,22 +67,25 @@ while state != QUIT:
         pygame.time.delay(1000)
         pygame.mixer.music.unpause()
     
-        
         # Atualiza o tempo
-        state = fase2(screen, WIDTH, HEIGHT, player, tempo_formt)
+        state = fase2(screen, WIDTH, HEIGHT, player, crom_tempo)
 
     if state == FASE3:
         pygame.mixer.music.pause()
         som_nivel.play()
         pygame.time.delay(1000)
         pygame.mixer.music.unpause()
-        state = fase3(screen, WIDTH, HEIGHT, player, tempo_formt)
+        state = fase3(screen, WIDTH, HEIGHT, player, crom_tempo)
 
     if state == WIN:
         pygame.mixer.music.stop()
         som_vitoria.play()
         pygame.time.delay(1000)
-        state = win_screen(screen, WIDTH, HEIGHT, tempo_formt)
+        tempo_final = pygame.time.get_ticks() - crom_tempo * 1000  # Tempo total em milissegundos
+        minutos = tempo_final // 60000
+        segundos = (tempo_final % 60000) // 1000
+        tempo_formatado = f"{minutos:02d}:{segundos:02d}"
+        state = win_screen(screen, WIDTH, HEIGHT, tempo_formatado)
         pygame.mixer.music.play(-1)
         
     if state == GAMEOVER:

@@ -21,13 +21,13 @@ WIN = 7
 
 # ===== Loop principal =====
 
-def fase1(screen, WIDTH, HEIGHT, player, tempo):
+def fase1(screen, WIDTH, HEIGHT, player, tempo_inicial):
     #Define a posição inicial do player
     player.nivel = 0  # Gato magro
     player.rect.x = 50
     player.rect.y = 700
     font = pygame.font.SysFont(None, 36)
-    tempo_surface = font.render(tempo, True, (0, 0, 0))  
+    
     # Lista de peixes1
     peixes1 = [
     Peixe(160, 360),
@@ -147,7 +147,12 @@ def fase1(screen, WIDTH, HEIGHT, player, tempo):
     # Inicia o jogo 
     while state != QUIT and state != GAMEOVER:
         barreiras = mapa_level1(screen) # Desenha o labirinto
-        
+        #tempo
+        tempo_atual = pygame.time.get_ticks() - tempo_inicial
+        minutos = tempo_atual // 60000
+        segundos = (tempo_atual % 60000) // 1000
+        tempo_format = f"{minutos:02}:{segundos:02}"  # Formata o tempo como MM:SS
+        tempo_surface = font.render(tempo_format, True, (0, 0, 0))  # Atualiza a superfície do tempo    
         for event in pygame.event.get():
             # ----- Verifica consequências
             if event.type == pygame.QUIT:
@@ -192,14 +197,14 @@ def fase1(screen, WIDTH, HEIGHT, player, tempo):
             
     return state
 
-def fase2(screen, WIDTH, HEIGHT, player, tempo):
+def fase2(screen, WIDTH, HEIGHT, player, tempo_inicial):
     # ----- Define posição inicial do player
     player.nivel = 1 # Gato médio
     player.rect.x = 50
     player.rect.y = 50  
     
     font = pygame.font.SysFont(None, 36)
-    tempo_surface = font.render(tempo, True, (0, 0, 0))  
+      
     # ----- Grupos de sprites
     grupo_inimigos = pygame.sprite.Group()
     grupo_tiros_inimigos = pygame.sprite.Group()
@@ -235,7 +240,12 @@ def fase2(screen, WIDTH, HEIGHT, player, tempo):
     while state != QUIT and state != GAMEOVER:
         screen.fill((0, 0, 0))  # Limpa a tela
         barreiras = mapa_level2(screen)  # Desenha o labirinto
-
+        # Atualiza o tempo
+        tempo_atual = pygame.time.get_ticks() - tempo_inicial
+        minutos = tempo_atual // 60000
+        segundos = (tempo_atual % 60000) // 1000
+        tempo_format = f"{minutos:02}:{segundos:02}"  # Formata o tempo como MM:SS
+        tempo_surface = font.render(tempo_format, True, (0, 0, 0))  # Atualiza a superfície do tempo   
         # Eventos
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -286,14 +296,14 @@ def fase2(screen, WIDTH, HEIGHT, player, tempo):
             return FASE3
     return state
 
-def fase3(screen, WIDTH, HEIGHT, player, tempo):
+def fase3(screen, WIDTH, HEIGHT, player, tempo_inicial):
     # ----- Define posição inicial do player
     player.nivel = 2  # Gato gordo
     player.rect.x = 50
     player.rect.y = 700  
     
     font = pygame.font.SysFont(None, 36)
-    tempo_surface = font.render(tempo, True, (0, 0, 0))  
+    
     # ----- Grupos de sprites
     grupo_inimigos = pygame.sprite.Group()
     grupo_tiros_inimigos = pygame.sprite.Group()
@@ -330,7 +340,12 @@ def fase3(screen, WIDTH, HEIGHT, player, tempo):
     while state != QUIT and state != GAMEOVER:
         screen.fill((0, 0, 0))  # Limpa a tela
         barreiras = mapa_level3(screen)   # Desenha o labirinto
-       
+        # Atualiza o tempo
+        tempo_atual = pygame.time.get_ticks() - tempo_inicial
+        minutos = tempo_atual // 60000
+        segundos = (tempo_atual % 60000) // 1000
+        tempo_format = f"{minutos:02}:{segundos:02}"  # Formata o tempo como MM:SS
+        tempo_surface = font.render(tempo_format, True, (0, 0, 0))  # Atualiza a superfície do tempo   
         # Eventos
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
