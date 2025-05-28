@@ -5,6 +5,9 @@ objetivo do jogador é pegar todos os peixes para passar para a próxima fase no
 A inicialização do jogo deve ser feita no arquivo "mecanicaprincipal.py"
 
 Referências:
-ChatGPT- foi utilizado para funções específicas no nosso jogo. Segue as indicações do uso de inteligência artificial no nosso projeto:
+ChatGPT - foi utilizado para funções específicas no nosso jogo. Segue as indicações do uso de inteligência artificial no nosso projeto:
 - A criação de todas as imagens do jogo foram geradas pelo ChatGPT e o histórico do chatGPT está exportado no link (https://chatgpt.com/share/68371d0a-b314-8005-8297-5a696b5d7b0a)
-- 
+- a função 'evoluir' da classe do player foi 100% retirada do chatGPT, é ela que faz com que o gato fica mais gordinho a cada fase, que passa por três imagens diferentes ()
+- a função 'check_collison' foi 100% retirada do chatGPT, ela checa se a próxima posição do gato vai colidir com uma das paredes na lista de paredes, para impedir que ele saia do mapa ou ande por cima das paredes ()
+- a estrutura de cálculo e formatação do tempo cronômetro também foi 70% retirada do chatGPT, com algumas adaptações para o que seria mais relevante para nosso jogo (https://chatgpt.com/share/68379154-0968-8013-aeff-9eef621c4de6)
+- a função 'paredes' foi 100% retirada do chatGPT, e é ela que foi utilizada para construir o mapa, um retângulo de cada vez 
