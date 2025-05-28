@@ -34,5 +34,7 @@ def init_screen(tela, WIDTH, HEIGHT):
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 if botao_rect.collidepoint(evento.pos):
                     return FASE1
+            if evento.type == pygame.KEYDOWN and evento.key == pygame.K_SPACE:
+                return 4  # Volta para o menu inicial (INIT)
 
 

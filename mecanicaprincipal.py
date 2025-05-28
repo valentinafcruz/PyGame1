@@ -100,7 +100,7 @@ while state != QUIT:
         som_gameover.play()
         pygame.time.delay(1000)
         state = game_over_screen(screen, WIDTH, HEIGHT)
-        if state == INIT:
+        if state == FASE1:
             pygame.mixer.music.play(-1) 
     if state == QUIT:
         pygame.quit()

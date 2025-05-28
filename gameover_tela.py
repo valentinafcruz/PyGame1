@@ -33,4 +33,6 @@ def game_over_screen(tela, WIDTH, HEIGHT):
             if evento.type == pygame.MOUSEBUTTONDOWN: 
                 mouse_pos = pygame.mouse.get_pos() # Pega a posição do mouse
                 if botao_rect.collidepoint(mouse_pos): # Verifica se o mouse está sobre o botão
-                    return 0  # Volta para o menu inicial (INIT)
+                    return 4  # Volta para o menu inicial (INIT)
+            if evento.type == pygame.KEYDOWN and evento.key == pygame.K_SPACE:
+                return 4  # Volta para o menu inicial (INIT)
