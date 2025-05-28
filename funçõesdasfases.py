@@ -192,7 +192,7 @@ def fase1(screen, WIDTH, HEIGHT, player, tempo_inicial):
         pygame.display.update()  # Atualiza a tela
         
         if len(peixes1) == 0:
-            return WIN  # WIN
+            return 5  # WIN
             
     return state
 
@@ -602,6 +602,6 @@ def fase3(screen, WIDTH, HEIGHT, player, tempo_inicial):
 
         # Condição para passar de fase (exemplo: pegou todos os peixes)
         if len(peixes) == 0:
-            return 5
+            return WIN  # WIN
 
     return state
