@@ -2,11 +2,6 @@
 # Arquivo principal do jogo
 # Iportando bibliotecas e arquivos necessários
 import pygame
-from init_tela import *
-from gameover_tela import *
-from funçõesdasfases import *
-from classes import *
-from win import *
 
 # Inicializa o Pygame, sons e define a tela
 pygame.init()
@@ -14,6 +9,14 @@ pygame.mixer.init()
 WIDTH, HEIGHT = 800, 800
 screen = pygame.display.set_mode((WIDTH, HEIGHT)) 
 pygame.display.set_caption('FatCatRush')
+
+from init_tela import *
+from gameover_tela import *
+from funçõesdasfases import *
+from classes import *
+from win import *
+
+
 
 # Música de fundo
 pygame.mixer.music.load('som/musica de fundo.mp3')

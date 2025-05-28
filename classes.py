@@ -4,7 +4,7 @@ import pygame
 from os import path
 from mapas_das_fases import *
 
-
+pygame.init()
 # ----- Inicializa assets do peixe
 peixe_img = pygame.image.load("assets/peixe_sem_fundo.png").convert_alpha()
 peixe_img = pygame.transform.scale(peixe_img, (30, 30))
