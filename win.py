@@ -3,6 +3,7 @@ from os import path
 
 FPS = 60
 BLACK = (0, 0, 0)
+YELLOW = (255, 215, 0)
 
 def win_screen(tela, WIDTH, HEIGHT, tempo_final):
 
@@ -11,8 +12,8 @@ def win_screen(tela, WIDTH, HEIGHT, tempo_final):
     fundo = pygame.transform.scale(fundo, (WIDTH, HEIGHT))
     
     font = pygame.font.SysFont(None, 48)
-    texto_vitoria = font.render("Você venceu!", True, (0, 255, 0))
-    texto_tempo = font.render(f"Tempo total: {tempo_final}", True, (0, 0, 0))
+    texto_tempo = font.render (f"Tempo total:", True, (0, 0, 0))
+    num_tempo = font.render(f"{tempo_final}", True, (0, 0, 0))
 
     running = True
     while running:
@@ -25,8 +26,9 @@ def win_screen(tela, WIDTH, HEIGHT, tempo_final):
                 return 0  # Volta para o estado INIT (menu inicial)
         
         tela.blit(fundo, (0, 0))  # Desenha o fundo
-        tela.blit(texto_vitoria, (WIDTH // 2 - 100, HEIGHT // 2 - 100))
-        tela.blit(texto_tempo, (WIDTH // 2 - 100, HEIGHT // 2 - 50))
+        pygame.draw.rect(tela, YELLOW, (600, 600, 200, 100), 200)  # Desenha um retângulo preto ao redor da tela
+        tela.blit(texto_tempo, (600, 600))
+        tela.blit(num_tempo, (600, 650))
         pygame.display.update()  # Atualiza a tela
     
     
